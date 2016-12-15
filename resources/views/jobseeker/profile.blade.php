@@ -30,9 +30,9 @@
                                     @endif
                                     <div class="col l2">
                                         @if($user->photo == NULL)
-                                            <img src="{{ asset('images/profile_default.jpg') }}" class="responsive-img"style="width:150px; height:150px">
+                                            <img src="{{ asset('images/profile_default.jpg') }}" class="responsive-img">
                                         @else
-                                            <img src="{{ asset('images/'.$user->photo) }}"class="responsive-img" style="width:150px; height:150px">
+                                            <img src="{{ asset('images/'.$user->photo) }}"class="responsive-img">
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l10">
@@ -137,7 +137,6 @@
                                         <li class="collection-item">
                                             <a class="waves-effect blue btn" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">View</a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
