@@ -113,7 +113,7 @@
                                             <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)Paid @else Not Paid @endif
                                         </div>
                                     </div>
-                                    <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
+                                    <a href="{{ route('job.index', $job->job_id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
                                 </div>
                             </div>
                         </li>

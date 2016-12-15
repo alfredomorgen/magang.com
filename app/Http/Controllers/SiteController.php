@@ -64,9 +64,7 @@ class SiteController extends Controller
                 ->where('jobs.name', 'LIKE', '%'.$search.'%')
                 ->where('users.name', 'LIKE', '%'.$company.'%')
                 ->where('jobs.status',Constant::status_active)
-                ->select('*','jobs.name as job_name','jobs.location as job_location')
-                ;
-
+                ->select('*', 'jobs.id as job_id', 'jobs.name as job_name','jobs.location as job_location');
         }elseif($company == null){
             $query = Job::where('name', 'LIKE', '%' . $search . '%')
                 ->select('*','jobs.name as job_name','jobs.location as job_location')
