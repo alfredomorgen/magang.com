@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     {{--<div>Icons made by <a href="http://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>--}}
 
-            <!-- Scripts -->
+    <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
     </script>
@@ -31,35 +31,21 @@
         .animate-bottom {
             display: none;
             position: relative;
-            -webkit-animation-name: animatebottom;
-            -webkit-animation-duration: 1s;
             animation-name: animatebottom;
             animation-duration: 1s
-        }
-
-        @-webkit-keyframes animatebottom {
-            from {
-                bottom: -100px;
-                opacity: 0
-            }
-            to {
-                bottom: 0px;
-                opacity: 1
-            }
         }
 
         @keyframes animatebottom {
             from {
                 bottom: -100px;
                 opacity: 0
-            }
-            to {
+            } to {
                 bottom: 0;
                 opacity: 1
             }
         }
 
-        body #myDiv {
+        body {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
@@ -69,13 +55,10 @@
             flex: 1 0 auto;
         }
     </style>
-
 </head>
 
-<body style="background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;"
-      onload="myFunction()">
-<nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif"
-         role="navigation">
+<body style="background-image: url({{ asset('images/office.jpg') }}); background-color: #eeeeee; background-repeat: no-repeat; background-attachment: fixed; background-size: 100% auto;">
+    <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="/" class="brand-logo">Magang</a>
             <ul class="right hide-on-med-and-down">
@@ -103,9 +86,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-
                     </ul>
-
 
                     <li><a id="notificationBox" class="dropdown-button" data-constrainwidth="false"
                            data-activates="dropdownNotifications">
@@ -120,11 +101,9 @@
                             </div>
                         </a>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a>
-                    </li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
 
-                    <ul id="dropdownNotifications" class="dropdown-content lighten-4"
-                        style="margin-top:64px; width:400px;">
+                    <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="margin-top:64px; width:400px;">
                         <ul class="collection" style="margin:0px">
                             @if(Auth::user()->notification->count() ==0)
                                 <li class="collection-tem avatar">
@@ -135,18 +114,16 @@
                                     <li class="collection-item avatar">
                                         <p hidden>{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}</p>
                                         <img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle">
-                                        <p><a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" class="blue-text"
-                                              style="padding:0px;">{{$jobseeker->user->name}}</a>
+                                        <p>
+                                            <a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" class="blue-text" style="padding:0px;">{{$jobseeker->user->name}}</a>
                                             {{$notification->data}}<br>
-                                        <p class="grey-text right">{{ $notification->created_at}}</p>
+                                            <p class="grey-text right">{{ $notification->created_at}}</p>
                                         </p>
                                     </li>
                                 @endforeach
                             @endif
                         </ul>
                     </ul>
-
-
                 @endif
             </ul>
 
@@ -207,27 +184,24 @@
         </div>
     </nav>
 
-    <main id="myDiv" class="animate-bottom">
+    <main class="animate-bottom">
         @yield('content')
     </main>
 
-    <footer class="page-footer"
-            style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
+    <footer class="page-footer" style="display: none; background-image: url({{ asset('images/footers7.jpg') }}); background-repeat: no-repeat; background-size: 100% auto;">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">Magang Internship</h5>
                     <p class="white-text text-lighten-4">We help you find the right place for Internship.</p>
                 </div>
+
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Contact</h5>
                     <ul>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo
-                                (alfredo7romero@gmail.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel
-                                (axelso@live.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner
-                                (edwardhashner@gmail.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>
                     </ul>
                 </div>
             </div>
@@ -240,28 +214,27 @@
             </div>
         </div>
     </footer>
-@yield('scripts')
-<script>
-    var myVar;
 
-    function myFunction() {
-        myVar = setTimeout(showPage, 100);
-    }
+    @yield('scripts')
 
-    function showPage() {
-        document.getElementsByClassName("animate-bottom")[0].style.display = "block";
-    }
+    <script>
+        $(document.body).ready(function(){
+            $(".animate-bottom").css("display", "block");
+            setTimeout(function(){
+                $("footer").fadeIn(1000);
+            }, 100);
+        });
 
-    $(document).ready(function () {
-        $("#notificationBox").on("click", function () {
-            $.ajax({
-                method: "get",
-                url: '/home/readNotifications',
-            }).done(function () {
-                $("#notificationCount").empty();
+        $(document).ready(function () {
+            $("#notificationBox").on("click", function () {
+                $.ajax({
+                    method: "get",
+                    url: '/home/readNotifications',
+                }).done(function () {
+                    $("#notificationCount").empty();
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
