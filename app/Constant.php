@@ -39,4 +39,7 @@ class Constant
     const notification_apply_approved = '2';
 
     const report_job = '4';
+
+    const type_company = "Company";
+    
 }

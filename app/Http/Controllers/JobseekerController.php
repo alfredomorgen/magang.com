@@ -92,14 +92,24 @@ class JobseekerController extends Controller
     {
         $message = "";
         $transaction = null;
+        $job = Job::find($job_id);
+
         $isTransactionExist = Transaction::where('job_id', '=', $job_id)
             ->where('jobseeker_id', '=', Auth::user()->jobseeker->id)
             ->first();
-
+        
         if($isTransactionExist == null){
             $transaction = Transaction::create([
                 'job_id' => $job_id,
                 'jobseeker_id' => Auth::user()->jobseeker->id,
+            ]);
+
+            $notification = Notification::create([
+                'type' => 'Applied job',
+                'user_id' => $job->company->user->id,
+                'notifiable_id' => Auth::user()->jobseeker->id,
+                'notifiable_type' => 'Jobseeker',
+                'data' => ' has applied as ' .$job->name,
             ]);
 
             if($transaction == null){

@@ -5,10 +5,7 @@
     ul li span{
         font-size:20px;
     }
-    ul li .active{
-        padding-left: 8px;
-        padding-right:8px;
-    }
+
 </style>
 
 <div class="container">

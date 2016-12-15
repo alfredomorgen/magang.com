@@ -265,3 +265,7 @@ Route::get('/jobseeker/{user_id}', [
     'uses' => 'JobseekerController@index',
     'as' => 'jobseeker.index',
 ]);
+
+Route::get('/home/readNotifications', [
+    'uses' => 'SiteController@readNotifications',
+]);

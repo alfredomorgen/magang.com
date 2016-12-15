@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constant;
 use App\Job;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -134,6 +135,13 @@ class SiteController extends Controller
                     ->with('users', $users)
                     ->with('search', 'Looking for' . ' ' . $search);
             }
+        }
+    }
+
+    public function readNotifications()
+    {
+        foreach (Auth::user()->notification as $notification){
+            $notification->update(['read_at' => Carbon::now()]);
         }
     }
 }

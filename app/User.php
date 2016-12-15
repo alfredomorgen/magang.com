@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('\App\Jobseeker');
     }
+
+    public function notification()
+    {
+        return $this->hasMany('\App\Notification');
+    }
 }

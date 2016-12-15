@@ -1,0 +1,3 @@
+@foreach (Auth::user()->notification as $notification)
+    {{ $notification->update(['read_at' => \Carbon\Carbon::now()]) }}
+@endforeach

@@ -15,9 +15,9 @@
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}" media="screen,projection"/>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-{{--<div>Icons made by <a href="http://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>--}}
+    {{--<div>Icons made by <a href="http://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>--}}
 
-<!-- Scripts -->
+            <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
     </script>
@@ -38,13 +38,25 @@
         }
 
         @-webkit-keyframes animatebottom {
-            from { bottom:-100px; opacity:0 }
-            to { bottom:0px; opacity:1 }
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
         }
 
         @keyframes animatebottom {
-            from{ bottom:-100px; opacity:0 }
-            to{ bottom:0; opacity:1 }
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
         }
 
         body #myDiv {
@@ -60,12 +72,14 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;" onload="myFunction()">
+<body style="background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;"
+      onload="myFunction()">
 <div id="myDiv" class="animate-bottom">
-    <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
+    <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif"
+         role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="/" class="brand-logo">Magang</a>
-            <ul class="right hide-on-med-and-down" >
+            <ul class="right hide-on-med-and-down">
                 @if (Auth::guest())
                     <ul id="dropdown2" class="dropdown-content white" style="margin-top:64px;">
                         <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
@@ -84,7 +98,8 @@
                     <ul id="dropdown2" class="dropdown-content orange lighten-4" style="margin-top:64px;">
                         {{--<li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>--}}
                         <li>
-                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
@@ -92,12 +107,46 @@
 
                     </ul>
 
-                    <ul id="dropdownNotifications" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                        <li><a href="#!" class="black-text">Notifications</a></li>
+
+                    <li><a id="notificationBox" class="dropdown-button" data-constrainwidth="false"
+                           data-activates="dropdownNotifications">
+                            <div class="row">
+                                <div class="col l3"><i class="material-icons">chat_bubble_outline</i></div>
+
+                                <div id="notificationCount"
+                                     class="col l1">@if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
+                                        <span class="new badge red"
+                                              data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}@endif</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a>
+                    </li>
+
+                    <ul id="dropdownNotifications" class="dropdown-content lighten-4"
+                        style="margin-top:64px; width:400px;">
+                        <ul class="collection" style="margin:0px">
+                            @if(Auth::user()->notification->count() ==0)
+                                <li class="collection-tem avatar">
+                                    <span class="grey-text">No Notification</span>
+                                </li>
+                            @else
+                                @foreach (Auth::user()->notification as $notification)
+                                    <li class="collection-item avatar">
+                                        <p hidden>{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}</p>
+                                        <p><a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" class="blue-text"
+                                              style="padding:0px;">{{$jobseeker->user->name}}</a>
+                                            {{$notification->data}}<br>
+                                        <p class="grey-text right">{{ $notification->created_at}}</p>
+                                        </p>
+                                    </li>
+                                @endforeach
+                            @endif
+                        </ul>
                     </ul>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdownNotifications"><i class="material-icons">chat_bubble_outline</i></a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
+
                 @endif
             </ul>
 
@@ -118,10 +167,39 @@
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Register</a></li>
                 @else
                     <ul id="dropdown6" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                        <li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>
+                        <li>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
 
-                    <a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }}</a>
+                    <li><a id="notificationBox" class="dropdown-button" data-constrainwidth="false"
+                           data-activates="dropdownNotifications2">
+                            <div class="row">
+                                <div class="col l3"><i class="material-icons">chat_bubble_outline</i></div>
+
+                                <div id="notificationCount"
+                                     class="col l1">@if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
+                                        <span class="new badge red"
+                                              data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}@endif</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }}</a>
+                    </li>
+
+                    <ul id="dropdownNotifications2" class="dropdown-content lighten-4"
+                        style="margin-top:64px; width:200px;">
+                        @foreach (Auth::user()->notification as $notification)
+                            <li>
+                                {{ $notification->data }}
+                            </li>
+                        @endforeach
+                    </ul>
                 @endif
             </ul>
 
@@ -133,7 +211,8 @@
         @yield('content')
     </main>
 
-    <footer class="page-footer" style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
+    <footer class="page-footer"
+            style=" background-image: url({{asset('images/footers7.jpg')}}); background-repeat:no-repeat; background-size: 100% auto;">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -143,9 +222,12 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Contact</h5>
                     <ul>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo
+                                (alfredo7romero@gmail.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel
+                                (axelso@live.com)</a></li>
+                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner
+                                (edwardhashner@gmail.com)</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,6 +252,17 @@
     function showPage() {
         document.getElementsByClassName("animate-bottom")[0].style.display = "block";
     }
+
+    $(document).ready(function () {
+        $("#notificationBox").on("click", function () {
+            $.ajax({
+                method: "get",
+                url: '/home/readNotifications',
+            }).done(function () {
+                $("#notificationCount").empty();
+            });
+        });
+    });
 </script>
 </body>
 </html>

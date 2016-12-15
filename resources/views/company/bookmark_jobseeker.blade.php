@@ -6,15 +6,6 @@
             font-size: 20px;
         }
 
-        ul li .active {
-            padding-left: 8px;
-            padding-right: 8px;
-        }
-
-        .collection .collection-item.avatar .circle{
-            width:120px;
-            height:120px;
-        }
     </style>
     <div class="container">
         <div class="row">
@@ -57,7 +48,7 @@
                                 @if(\App\Jobseeker::find($bookmark->target)->user->photo == NULL)
                                     <img src="{{ asset('images/profile_default.jpg') }}" class="circle materialboxed" width="650" >
                                 @else
-                                    <img src="{{ asset('images/'.\App\Jobseeker::find($bookmark->target)->user->photo) }}" class="circle materialboxed" width="650">
+                                    <img src="{{ asset('images/'.\App\Jobseeker::find($bookmark->target)->user->photo) }}" class="circle materialboxed" style="width:120px;height: 120px;" width="650">
                                 @endif
                             </div>
 

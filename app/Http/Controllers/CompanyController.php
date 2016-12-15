@@ -12,6 +12,7 @@ use App\Bookmark;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\Post_jobRequest;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
@@ -19,6 +20,7 @@ use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 
 class CompanyController extends Controller
 {
+    use Notifiable;
     protected $redirectTo = '/home';
 
     public function __construct()
