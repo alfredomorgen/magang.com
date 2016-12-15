@@ -248,12 +248,12 @@ class CompanyController extends Controller
     public function add_bookmark_jobseeker($id)
     {
         $bookmark = null;
-        $isBookmarkExist = Bookmark::where('target','=',User::find($id)->jobseeker->id)
-            ->where('user_id','=',Auth::user()->id)
+        $isBookmarkExist = Bookmark::where('user_id','=',Auth::user()->id)
+            ->where('target','=',User::find($id)->jobseeker->id)
+            ->where('type', '=', Constant::user_company)
             ->first();
 
-        if($isBookmarkExist == null)
-        {
+        if($isBookmarkExist == null) {
             $bookmark = new Bookmark();
             $bookmark->user_id = Auth::user()->id;
             $bookmark->target = User::find($id)->jobseeker->id;
@@ -262,20 +262,14 @@ class CompanyController extends Controller
 
             $bookmark->save();
 
-            if($bookmark == null)
-            {
+            if($bookmark == null) {
                 $message = "Failed to Bookmark Job Seeker";
-            }
-            else
-            {
+            } else {
                 $message = "Job Seeker Bookmarked";
             }
-        }
-        else
-        {
+        } else {
             $message = "Already in Bookmark";
         }
-
 
         return back()->with('success',$message);
     }

@@ -84,7 +84,6 @@
             </ul>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')

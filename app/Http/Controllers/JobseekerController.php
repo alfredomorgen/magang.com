@@ -66,7 +66,7 @@ class JobseekerController extends Controller
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $photoCrop = Image::make($request->get('photoCrop'));
-                
+
                 $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
                 $photoCrop->save(public_path('images/').$photo_name);
                 $user->photo = $photo_name;
@@ -157,7 +157,7 @@ class JobseekerController extends Controller
         $message = "";
         $company = User::find($user_id)->company;
         $isBookmarkExist = Bookmark::where('user_id', '=', Auth::user()->id)
-            ->where('target', '=', User::find($user_id))
+            ->where('target', '=', $company->id)
             ->where('type', '=', Constant::user_company)
             ->first();
 
