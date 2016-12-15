@@ -14,6 +14,7 @@ use App\Http\Requests\Post_jobRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 use Psy\Test\CodeCleaner\ValidClassNamePassTest;
 
 class CompanyController extends Controller
@@ -70,8 +71,10 @@ class CompanyController extends Controller
 
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo');
+                $photoCrop = Image::make($request->get('photoCrop'));
+
                 $photo_name = md5(uniqid()) . '.' . $photo->getClientOriginalExtension();
-                $photo->move(public_path() . '/images/', $photo_name);
+                $photoCrop->save(public_path('images/').$photo_name);
                 $user->photo = $photo_name;
             }
 

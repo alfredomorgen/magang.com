@@ -111,11 +111,14 @@
                                 </div>
 
                                 <div class="row">
+                                    <img id="photoPreview" class="responsive-img center">
+                                    <input type="hidden" id="photoCrop" name="photoCrop">
+
                                     <div class="input-field col s12">
                                         <div class="file-field input-field">
                                             <div class="btn">
                                                 <span><i class="material-icons">perm_media</i> Upload Photo</span>
-                                                <input id="photo" type="file" name="photo">
+                                                <input id="uploadPhoto" type="file" name="photo">
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text">
@@ -140,5 +143,31 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.js"></script>
+
+    <script>
+        $("#uploadPhoto").on("change", function(event){
+            var filePhoto = $("#uploadPhoto")[0].files[0];
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $("#photoPreview").attr("src", e.target.result);
+                $("#photoPreview").cropper({
+                    aspectRatio: 1/1,
+                    resizable: true,
+                    zoomable: false,
+                    rotatable: false,
+                    multiple: true,
+                    crop: function(e){
+                        $("#photoCrop").val($("#photoPreview").cropper("getCroppedCanvas").toDataURL());
+                    }
+                });
+            }
+
+            reader.readAsDataURL(filePhoto);
+        });
+    </script>
 @endsection

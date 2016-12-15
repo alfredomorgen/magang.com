@@ -14,11 +14,11 @@
                     <span class="center truncate card-title grey-text text-darken-2" style="padding-top: 20px"><b>{{ $user->name }}</b></span>
                     <div class="card-content grey-text text-darken-2">
                         <div class="row">
-                            <div class="col">
+                            <div class="col l2">
                                 @if($user->photo == NULL)
-                                    <img src="{{ asset(\App\Constant::default_photo) }}" style="width:150px; height:150px">
+                                    <img src="{{ asset(\App\Constant::default_photo) }}" class="responsive-img">
                                 @else
-                                    <img src="{{ asset('images/'.$user->photo) }}" style="width:150px; height:150px">
+                                    <img src="{{ asset('images/'.$user->photo) }}" class="responsive-img">
                                 @endif
                                 {{--wait--}}
                                 <div class="row">

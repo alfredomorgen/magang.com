@@ -36,7 +36,7 @@
                                         @if($user->photo == NULL)
                                             <img src="{{ asset('images/profile_default.jpg') }}" class="responsive-img">
                                         @else
-                                            <img src="{{ asset('images/'.$user->photo) }}"class="responsive-img">
+                                            <img src="{{ asset('images/'.$user->photo) }}" class="responsive-img">
                                         @endif
                                     </div>
                                     <div class="col s12 m12 l10">
