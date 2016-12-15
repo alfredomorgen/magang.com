@@ -17,6 +17,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 
 class JobseekerController extends Controller
@@ -66,8 +67,14 @@ class JobseekerController extends Controller
 
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
+                $photoCrop = Image::make($request->get('photoCrop'));
+
+//                $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
+//                $photo->move(public_path().'/images/', $photo_name);
+//                $user->photo = $photo_name;
+
                 $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
-                $photo->move(public_path().'/images/', $photo_name);
+                $photoCrop->save(public_path('images/').$photo_name);
                 $user->photo = $photo_name;
             }
 

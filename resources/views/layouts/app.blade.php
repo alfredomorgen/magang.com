@@ -168,7 +168,7 @@
     }
 
     function showPage() {
-        document.getElementByClass("animate-bottom").style.display = "block";
+        document.getElementsByClassName("animate-bottom")[0].style.display = "block";
     }
 </script>
 </body>
