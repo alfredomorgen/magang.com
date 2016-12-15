@@ -13,9 +13,7 @@ use App\Report;
 use App\Transaction;
 use App\User;
 
-
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
@@ -33,15 +31,15 @@ class JobseekerController extends Controller
         $user = User::findOrFail($user_id);
         if($user->role == Constant::user_jobseeker){
             if(Auth::guest()){
-                return redirect('/');
+                abort(401);
             } else if(Auth::user()->role == Constant::user_jobseeker && Auth::user()->id != $user->id){
-                return redirect('/');
+                abort(403);
             }
 
             $data = ['user' => $user];
             return view('jobseeker.profile', $data);
         } else {
-            return redirect('/');
+            abort(404);
         }
     }
 
@@ -68,11 +66,7 @@ class JobseekerController extends Controller
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
                 $photoCrop = Image::make($request->get('photoCrop'));
-
-//                $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
-//                $photo->move(public_path().'/images/', $photo_name);
-//                $user->photo = $photo_name;
-
+                
                 $photo_name = md5(uniqid()).'.'.$photo->getClientOriginalExtension();
                 $photoCrop->save(public_path('images/').$photo_name);
                 $user->photo = $photo_name;
