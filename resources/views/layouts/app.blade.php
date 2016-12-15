@@ -135,6 +135,7 @@
                                 @foreach (Auth::user()->notification as $notification)
                                     <li class="collection-item avatar">
                                         <p hidden>{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}</p>
+                                        <img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle">
                                         <p><a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" class="blue-text"
                                               style="padding:0px;">{{$jobseeker->user->name}}</a>
                                             {{$notification->data}}<br>
