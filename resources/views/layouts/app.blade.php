@@ -74,8 +74,7 @@
 
 <body style="background-image: url({{asset('images/office.jpg')}}); background-color:#eeeeee; background-repeat:no-repeat;background-attachment: fixed; background-size:  1600px 768px;"
       onload="myFunction()">
-<div id="myDiv" class="animate-bottom">
-    <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif"
+<nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif"
          role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="/" class="brand-logo">Magang</a>
@@ -208,7 +207,7 @@
         </div>
     </nav>
 
-    <main>
+    <main id="myDiv" class="animate-bottom">
         @yield('content')
     </main>
 
@@ -241,7 +240,6 @@
             </div>
         </div>
     </footer>
-</div>
 @yield('scripts')
 <script>
     var myVar;

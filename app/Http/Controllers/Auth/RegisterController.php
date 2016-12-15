@@ -6,6 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Constant;
+use App\Jobseeker;
+use App\Company;
 
 class RegisterController extends Controller
 {
