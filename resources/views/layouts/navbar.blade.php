@@ -14,6 +14,7 @@
                 <li class="tab"><a target="_self" href="{{url('/admin/search_jobseeker') }}" style="color:#757575">Search Jobseeker</a></li>
                 <li class="tab"><a target="_self" href="{{url('/admin/search_company')}}" style="color:#757575">Search Company</a></li>
                 <li class="tab"><a target="_self" href="{{url('/admin/search_job')}}" style="color:#757575">Search Job</a></li>
+                <li class="tab"><a target="_self" href="{{ route('admin.report_index') }}" style="color:#757575">Reports</a></li>
             @elseif(Auth::user()->role == \App\Constant::user_company)
                 <li class="tab"><a target="_self" href="{{url('/home')}}" style="color:#757575">Home</a></li>
                 <li class="tab"><a target="_self" href="{{url('/company/search_jobseeker')}}" style="color:#757575">Search Job Seeker</a></li>

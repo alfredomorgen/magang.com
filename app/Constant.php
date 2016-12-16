@@ -40,6 +40,10 @@ class Constant
 
     const report_job = '4';
 
+    const report_status_closed = '0';
+    const report_status_pending = '1';
+    const report_status_solved = '2';
+
     const type_company = "Company";
     
 }

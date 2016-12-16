@@ -13,6 +13,7 @@ use App\Company;
 use App\Constant;
 use App\Jobseeker;
 use App\Job;
+use App\Report;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
@@ -50,5 +51,33 @@ class AdminController extends Controller
         $user->status = Constant::status_inactive;
         $user->save();
         return redirect('/admin/search_jobseeker');
+    }
+
+    public function report_index()
+    {
+        $reports = Report::all()
+            ->where('status', '=', Constant::report_status_pending);
+        $data = [
+            'reports' => $reports,
+        ];
+        return view('admin.report_index', $data);
+    }
+
+    public function report_close($report_id)
+    {
+        $message = "";
+        $report = Report::findOrFail($report_id);
+
+        if($report == null){
+            $message = "Report not found...";
+        } else {
+            $report->status = Constant::report_status_closed;
+            $report->save();
+
+            $message = "Report successfully closed!";
+        }
+
+        $data = ['message' => $message];
+        return redirect()->route('admin.report_index')->with($data);
     }
 }

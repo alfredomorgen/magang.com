@@ -58,8 +58,19 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin/delete_company/{id}',[
         'uses' => 'AdminController@deleteCompany'
     ]);
+
     Route::get('/admin/delete_jobseeker/{id}',[
         'uses' => 'AdminController@deleteJobseeker'
+    ]);
+
+    Route::get('/admin/report_index', [
+        'uses' => 'AdminController@report_index',
+        'as' => 'admin.report_index',
+    ]);
+
+    Route::get('/admin/report_close/{report_id}', [
+        'uses' => 'AdminController@report_close',
+        'as' => 'admin.report_close',
     ]);
 });
 
