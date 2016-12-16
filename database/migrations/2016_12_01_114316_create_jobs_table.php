@@ -18,7 +18,6 @@ class CreateJobsTable extends Migration
             $table->integer('job_category_id')->unsigned()->index();
 
             $table->string('name');
-            $table->dateTime('deadline');
             $table->string('location');
             $table->integer('type');
             $table->integer('salary');
@@ -26,6 +25,7 @@ class CreateJobsTable extends Migration
             $table->text('benefit')->nullable();
             $table->text('requirement');
             $table->text('description');
+            $table->dateTime('deadline');
             $table->integer('status');
 
             $table->timestamps();
