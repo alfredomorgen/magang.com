@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
-use Psy\Test\CodeCleaner\ValidClassNamePassTest;
+use App\Notifications\ApprovedJob;
 
 class CompanyController extends Controller
 {
@@ -227,6 +227,8 @@ class CompanyController extends Controller
 
         $transaction->status = Constant::status_active;
         $transaction->save();
+
+        $transaction->jobseeker->user->notify(new ApprovedJob());
 
         return back();
     }
