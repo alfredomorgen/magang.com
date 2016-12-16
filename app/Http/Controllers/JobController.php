@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constant;
 use App\Job;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,12 @@ class JobController extends Controller
 {
     public function index($id){
         $job = Job::findOrFail($id);
-        $data = ['job' => $job];
-
-        return view('job.job_detail', $data);
+        if($job->status == Constant::status_active){
+            $data = ['job' => $job];
+            return view('job.job_detail', $data);
+        } else {
+            abort(404);
+        }
     }
 
     public function search_job()

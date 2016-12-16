@@ -28,29 +28,40 @@ class AdminController extends Controller
 
     public function deleteJob($id)
     {
-        $job = Job::find($id);
+        $job = Job::findOrFail($id);
         $job->status= Constant::status_banned;
         $job->save();
-        return redirect('/admin/search_job');
+
+        $message = "Company successfully deactivated!";
+        $data = ['message' => $message];
+
+        return back()->with($data);
     }
 
     public function deleteCompany($id)
     {
-        $user= User::find($id);
-
+        $user= User::findOrFail($id);
         $user->status = Constant::status_inactive;
         $user->company->job()->update([
             'status' => Constant::status_inactive
         ]);
         $user->save();
-        return redirect('/admin/search_company');
+
+        $message = "Company successfully deactivated!";
+        $data = ['message' => $message];
+
+        return back()->with($data);
     }
     public function deleteJobseeker($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->status = Constant::status_inactive;
         $user->save();
-        return redirect('/admin/search_jobseeker');
+
+        $message = "Jobseeker successfully deactivated!";
+        $data = ['message' => $message];
+
+        return back()->with($data);
     }
 
     public function report_index()
@@ -65,19 +76,13 @@ class AdminController extends Controller
 
     public function report_close($report_id)
     {
-        $message = "";
         $report = Report::findOrFail($report_id);
+        $report->status = Constant::report_status_closed;
+        $report->save();
 
-        if($report == null){
-            $message = "Report not found...";
-        } else {
-            $report->status = Constant::report_status_closed;
-            $report->save();
-
-            $message = "Report successfully closed!";
-        }
-
+        $message = "Report successfully closed!";
         $data = ['message' => $message];
-        return redirect()->route('admin.report_index')->with($data);
+
+        return back()->with($data);
     }
 }
