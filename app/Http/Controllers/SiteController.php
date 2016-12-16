@@ -16,12 +16,15 @@ class SiteController extends Controller
     public function index()
     {
         $jobs = Job::orderBy('created_at', 'desc')
-            ->where('status','=',Constant::status_active)->paginate(5);
+            ->where('deadline', '>', Carbon::now())
+            ->where('status','=',Constant::status_active)
+            ->paginate(10);
         $data = [
             'jobs' => $jobs,
         ];
         return view('home', $data);
     }
+
     public function indexCompany()
     {
         $user = User::with('company')
@@ -39,7 +42,7 @@ class SiteController extends Controller
 
     public function loginType($user_type)
     {
-        $data = ['user_types' =>$user_type];
+        $data = ['user_types' => $user_type];
         return view('auth.login',$data);
     }
 
