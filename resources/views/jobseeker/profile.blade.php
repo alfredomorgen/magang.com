@@ -135,7 +135,7 @@
                                         <li class="collection-header  amber darken-4 white-text"><h6><b>Resume</b></h6>
                                         </li>
                                         <li class="collection-item">
-                                            <a class="waves-effect blue btn" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">View</a>
+                                            <a class="waves-effect blue btn" target="_blank" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">View</a>
                                         </li>
                                     </ul>
                                 </div>
