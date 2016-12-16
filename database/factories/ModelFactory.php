@@ -78,14 +78,13 @@ $factory->define(App\Company::class, function(Faker\Generator $faker) use ($fact
 $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory) {
     return [
         'name' => $faker->jobTitle,
-        'deadline' => $faker->dateTimeBetween('now', '+ 30 days'),
         'location' => $faker->address,
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
-        'period' => $faker->biasedNumberBetween(1, 24),
         'benefit' => $faker->sentence,
         'requirement' => $faker->bs,
         'description' => $faker->catchPhrase,
+        'deadline' => $faker->dateTimeBetween('now', '+ 30 days'),
         'status' => \App\Constant::status_active,
     ];
 });

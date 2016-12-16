@@ -21,7 +21,6 @@ class CreateJobsTable extends Migration
             $table->string('location');
             $table->integer('type');
             $table->integer('salary');
-            $table->integer('period');
             $table->text('benefit')->nullable();
             $table->text('requirement');
             $table->text('description');
