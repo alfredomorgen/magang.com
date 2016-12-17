@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Job;
 use App\Jobseeker;
 use App\Constant;
@@ -93,21 +94,21 @@ class CompanyController extends Controller
         return view('company.post_job');
     }
 
-    public function store(Post_jobRequest $request)
+    public function store(JobRequest $request)
     {
-        $job = new Job();
-        $job->company_id = Auth::user()->company->id;
-        $job->job_category_id = Input::get('job_category_id');
-        $job->name = Input::get('name');
-        $job->location = Input::get('location');
-        $job->type = Input::get('type');
-        $job->salary = Input::get('salary');
-        $job->period = Input::get('period');
-        $job->benefit = Input::get('benefit');
-        $job->requirement = Input::get('requirement');
-        $job->description = Input::get('description');
-        $job->status = Constant::status_active;
-        $job->save();
+        $job = Job::create([
+            'company_id' => Auth::user()->company->id,
+            'job_category_id' => $request->get('job_category_id'),
+            'name' => $request->get('name'),
+            'location' => $request->get('location'),
+            'type' => $request->get('type'),
+            'salary' => $request->get('salary'),
+            'benefit' => $request->get('type'),
+            'requirement' => $request->get('requirement'),
+            'description' => $request->get('description'),
+            'deadline' => $request->get('deadline'),
+            'status' => Constant::status_active,
+        ]);
 
         return redirect('/company/manage_post')->with('success', 'New Job Added');
     }
@@ -228,7 +229,7 @@ class CompanyController extends Controller
         $transaction->status = Constant::status_active;
         $transaction->save();
 
-        $transaction->jobseeker->user->notify(new ApprovedJob());
+        $transaction->jobseeker->user->notify(new ApprovedJob($id));
 
         return back();
     }
