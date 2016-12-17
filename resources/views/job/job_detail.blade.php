@@ -53,7 +53,7 @@
                     </div>
                     <div class="card-content grey-text text-darken-2" style="padding-left:50px;padding-right:50px;">
                         <div class="right-align">
-                            <a class="grey-text tooltipped right-align" data-position="bottom" data-delay="10" data-tooltip="Deadline Time"><i class="tiny material-icons">schedule </i> {{ $job->created_at}}</a>
+                            <a class="grey-text tooltipped right-align" data-position="bottom" data-delay="10" data-tooltip="Deadline Time"><i class="tiny material-icons">schedule </i> {{ $job->deadline}}</a>
                         </div>
                         <div class="center"><h4 class="">{{ $job->name }}</h4></div>
                         <br>

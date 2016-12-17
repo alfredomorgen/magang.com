@@ -20,7 +20,7 @@
                         <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                             <thead>
                                 <tr>
-                                    <th data-field="number">Job Seeker ID</th>
+                                    <th data-field="number">Jobseeker ID</th>
                                     <th data-field="created_at">Date Applied</th>
                                     <th data-field="created_at">Time Applied</th>
                                     <th data-field="name">Name</th>
@@ -98,9 +98,10 @@
                 <table class="centered bordered highlight responsive-table white" style="word-wrap:break-word">
                     <thead>
                         <tr>
-                            <th data-field="id">Job Id</th>
-                            <th data-field="name">Title Job</th>
+                            <th data-field="id">Job ID</th>
+                            <th data-field="name">Job Title</th>
                             <th data-field="created_at">Date Created</th>
+                            <th data-field="deadline">Deadline</th>
                             <th data-field="candidates">Candidates</th>
                             <th data-field="status">Status</th>
                             <th data-field="action" colspan="2">Action</th>
@@ -119,6 +120,7 @@
                                 @endif
                             </td>
                             <td>{{ date('d-m-Y', strtotime($job->created_at)) }}</td>
+                            <td>{{ date('d-m-Y', strtotime($job->deadline)) }}</td>
                             <td>
                                 @if($job->status == \App\Constant::status_banned)
                                     <span class="tooltipped linkCandidates" data-position="bottom" data-delay="50" data-tooltip="Banned" href="#">{{$job->transaction->count()}}</span>
