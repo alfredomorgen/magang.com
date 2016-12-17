@@ -63,47 +63,46 @@
             <a id="logo-container" href="/" class="brand-logo">Magang</a>
             <ul class="right hide-on-med-and-down">
                 @if (Auth::guest())
-                    <ul id="dropdown2" class="dropdown-content white" style="margin-top:64px;">
+                    <ul id="dropdown2" class="dropdown-content white">
                         <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
                         <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
                     </ul>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Login</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2" data-beloworigin="true">Login</a></li>
 
-                    <ul id="dropdown3" class="dropdown-content white" style="margin-top:64px;">
+                    <ul id="dropdown3" class="dropdown-content white">
                         <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
                         <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
                     </ul>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Register</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3" data-beloworigin="true">Register</a></li>
                 @else
-                    <ul id="dropdown2" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                        {{--<li><a href="{{ url('/logout') }}" class="black-text">Logout</a></li>--}}
+                    <ul id="dropdown2" class="dropdown-content orange lighten-4">
                         <li>
-                            <a href="{{ url('/logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </li>
                     </ul>
 
-                    <li><a id="notificationBox" class="dropdown-button" data-constrainwidth="false"
-                           data-activates="dropdownNotifications">
+                    <li>
+                        <a id="notificationBox" class="dropdown-button" data-activates="dropdownNotifications" data-beloworigin="true" data-constrainwidth="false">
                             <div class="row">
                                 <div class="col l3"><i class="material-icons">chat_bubble_outline</i></div>
 
-                                <div id="notificationCount"
-                                     class="col l1">@if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
-                                        <span class="new badge white red-text"
-                                              data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}@endif</span>
+                                <div id="notificationCount" class="col l1">
+                                    @if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
+                                        <span class="new badge white red-text" data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </a>
+                    </li>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2" data-beloworigin="true">{{ Auth::user()->name }}</a></li>
 
-                    <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="margin-top:64px; width:420px;">
+                    <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="width:420px;">
                         <ul class="collection" style="margin:0px">
                             @if(Auth::user()->notification->count() ==0)
                                 <li class="collection-tem avatar">
@@ -146,7 +145,6 @@
                                                 {{$job->company->user->name}}<br>
                                             <p class="grey-text right">{{ $notification->created_at->diffForHumans()}}</p>
                                             </p>
-
                                         @endif
                                     </li>
                                 @endforeach
@@ -156,75 +154,7 @@
                 @endif
             </ul>
 
-            <ul id="nav-mobile" class="side-nav">
-                @if (Auth::guest())
-                    <ul id="dropdown4" class="dropdown-content white" style="margin-top:64px;">
-                        <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
-                        <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
-                    </ul>
-
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Login</a></li>
-
-                    <ul id="dropdown5" class="dropdown-content white" style="margin-top:64px;">
-                        <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
-                        <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
-                    </ul>
-
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Register</a></li>
-                @else
-                    <ul id="dropdown6" class="dropdown-content orange lighten-4" style="margin-top:64px;">
-                        <li>
-                            <a href="{{ url('/logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
-
-                    <li><a id="notificationBox" class="dropdown-button" data-constrainwidth="false"
-                           data-activates="dropdownNotifications2">
-                            <div class="row">
-                                <div class="col l3"><i class="material-icons">chat_bubble_outline</i></div>
-
-                                <div id="notificationCount"
-                                     class="col l1">@if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
-                                        <span class="new badge red"
-                                              data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}@endif</span>
-                                </div>
-                            </div>
-                        </a>
-
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown6">{{ Auth::user()->name }}</a>
-                    </li>
-
-                    <ul id="dropdownNotifications2" class="dropdown-content lighten-4"
-                        style="margin-top:64px; width:200px;">
-                        @if(Auth::user()->notification->count() ==0)
-                            <li class="collection-tem avatar">
-                                <span class="grey-text">No Notification</span>
-                            </li>
-                        @else
-                            @foreach (Auth::user()->notification as $notification)
-                                <li class="collection-item avatar">
-
-                                    <p class="hide">{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}
-                                        {{$job = \App\Job::find($notification->data)}}</p>
-
-                                    <a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" style="padding:0px;"><img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle hoverable"></a>
-                                    <p>
-                                        {{$jobseeker->user->name}}<br>
-                                        <a  href="{{route('job.index',$job->id)}}" class="blue-text" style="padding:0px;">has applied as {{$job->name}}</a>
-                                    <p class="grey-text right">{{ $notification->created_at}}</p>
-                                    </p>
-
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                @endif
-            </ul>
-
+            @include('layouts.nav-mobile')
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
