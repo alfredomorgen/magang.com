@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
+use Carbon\Carbon;
 class Notification extends Model
 {
     use Notifiable;
@@ -25,8 +25,9 @@ class Notification extends Model
     {
         return $this->belongsTo('\App\User');
     }
-    public function getCreatedAtAttribute()
-    {
-        return date('d/m/Y',strtotime($this->attributes['created_at']));
-    }
+//    public function getCreatedAtAttribute()
+//    {
+//        return date('d/m/Y',strtotime($this->attributes['created_at']));
+//
+//    }
 }

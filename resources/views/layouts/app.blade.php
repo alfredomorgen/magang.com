@@ -95,7 +95,7 @@
 
                                 <div id="notificationCount"
                                      class="col l1">@if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
-                                        <span class="new badge red"
+                                        <span class="new badge white red-text"
                                               data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}@endif</span>
                                 </div>
                             </div>
@@ -103,22 +103,51 @@
 
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{ Auth::user()->name }}</a></li>
 
-                    <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="margin-top:64px; width:400px;">
+                    <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="margin-top:64px; width:420px;">
                         <ul class="collection" style="margin:0px">
                             @if(Auth::user()->notification->count() ==0)
                                 <li class="collection-tem avatar">
                                     <span class="grey-text">No Notification</span>
                                 </li>
                             @else
-                                @foreach (Auth::user()->notification as $notification)
+                                @foreach (Auth::user()->notification->sortByDesc('created_at') as $notification)
                                     <li class="collection-item avatar">
-                                        <p hidden>{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}</p>
-                                        <img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle">
-                                        <p>
-                                            <a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" class="blue-text" style="padding:0px;">{{$jobseeker->user->name}}</a>
-                                            {{$notification->data}}<br>
-                                            <p class="grey-text right">{{ $notification->created_at}}</p>
-                                        </p>
+                                        @if(Auth::user()->role == \App\Constant::user_company)
+                                            <p class="hide">{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}
+                                            {{$job = \App\Job::find($notification->data)}}</p>
+
+                                            <a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" style="padding:0px;"><img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle hoverable"  style="width:42px;height:42px;"></a>
+                                            <p>
+                                                {{$jobseeker->user->name}}<br>
+                                                <a  href="{{route('job.index',$job->id)}}" class="blue-text" style="padding:0px;">has applied as {{$job->name}}</a>
+                                                <p class="grey-text right">{{ $notification->created_at->diffForHumans()}}</p>
+                                            </p>
+                                        @elseif(Auth::user()->role ==\App\Constant::user_jobseeker)
+                                            <p class="hide">{{ $company = \App\Company::find($notification->notifiable_id)}}
+                                                {{$job = \App\Job::find($notification->data)}}</p>
+
+                                            <a href="{{ route('company.index', $company->user->id) }}" style="padding:0px;"><img src="{{asset('images/'.$company->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle hoverable" style="width:42px;height:42px;"></a>
+                                            <p>
+                                                You has been approved as<br>
+                                                <a  href="{{route('job.index',$job->id)}}" class="blue-text" style="padding:0px;">{{$job->name}}</a>
+                                                {{$company->user->name}}<br>
+                                                <p class="grey-text text-accent-3">Please wait for the information from the company</p>
+                                            <p class="grey-text right">{{ $notification->created_at->diffForHumans()}}</p>
+                                            </p>
+                                        @elseif(Auth::user()->role ==\App\Constant::user_admin)
+                                            <p class="hide">
+                                                {{$job = \App\Job::find($notification->data)}}
+                                                {{$jobseeker = \App\User::find($notification->notifiable_id)}}</p>
+
+                                            <a href="{{ route('company.index', $jobseeker->name) }}" style="padding:0px;"><img src="{{asset('images/'.$jobseeker->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle hoverable" style="width:42px;height:42px;"></a>
+                                            <p>
+                                                {{$jobseeker->name}}
+                                                <a  href="{{route('job.index',$job->id)}}" class="blue-text" style="padding:0px;">has reported {{$job->name}}</a>
+                                                {{$job->company->user->name}}<br>
+                                            <p class="grey-text right">{{ $notification->created_at->diffForHumans()}}</p>
+                                            </p>
+
+                                        @endif
                                     </li>
                                 @endforeach
                             @endif
@@ -171,11 +200,27 @@
 
                     <ul id="dropdownNotifications2" class="dropdown-content lighten-4"
                         style="margin-top:64px; width:200px;">
-                        @foreach (Auth::user()->notification as $notification)
-                            <li>
-                                {{ $notification->data }}
+                        @if(Auth::user()->notification->count() ==0)
+                            <li class="collection-tem avatar">
+                                <span class="grey-text">No Notification</span>
                             </li>
-                        @endforeach
+                        @else
+                            @foreach (Auth::user()->notification as $notification)
+                                <li class="collection-item avatar">
+
+                                    <p class="hide">{{ $jobseeker = \App\Jobseeker::find($notification->notifiable_id)}}
+                                        {{$job = \App\Job::find($notification->data)}}</p>
+
+                                    <a href="{{ route('jobseeker.index', $jobseeker->user->id) }}" style="padding:0px;"><img src="{{asset('images/'.$jobseeker->user->photo)}}" onerror="this.src='{{ asset('images/profile_default.jpg') }}'" class="circle hoverable"></a>
+                                    <p>
+                                        {{$jobseeker->user->name}}<br>
+                                        <a  href="{{route('job.index',$job->id)}}" class="blue-text" style="padding:0px;">has applied as {{$job->name}}</a>
+                                    <p class="grey-text right">{{ $notification->created_at}}</p>
+                                    </p>
+
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 @endif
             </ul>

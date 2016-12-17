@@ -103,13 +103,13 @@ class JobseekerController extends Controller
                 'job_id' => $job_id,
                 'jobseeker_id' => Auth::user()->jobseeker->id,
             ]);
-
+            
             $notification = Notification::create([
                 'type' => 'Applied job',
                 'user_id' => $job->company->user->id,
                 'notifiable_id' => Auth::user()->jobseeker->id,
-                'notifiable_type' => 'Jobseeker',
-                'data' => ' has applied as ' .$job->name,
+                'notifiable_type' => Constant::type_jobseeker,
+                'data' => $job->id,
             ]);
 
             if($transaction == null){
@@ -272,6 +272,14 @@ class JobseekerController extends Controller
             ->where('job_id', '=', $job_id)
             ->where('type', '=', Constant::report_job)
             ->first();
+
+        $notification = Notification::create([
+            'type' => 'Report job',
+            'user_id' => 1,
+            'notifiable_id' => Auth::user()->id,
+            'notifiable_type' => Constant::type_jobseeker,
+            'data' => $job_id,
+        ]);
 
         if($isReportExist == null){
             $report = Report::create([

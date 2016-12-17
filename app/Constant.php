@@ -45,5 +45,6 @@ class Constant
     const report_status_solved = '2';
 
     const type_company = "Company";
+    const type_jobseeker = "Jobseeker";
     
 }

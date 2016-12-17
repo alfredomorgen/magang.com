@@ -5,7 +5,10 @@
         ul li span {
             font-size: 20px;
         }
-
+        .collection .collection-item.avatar .circle{
+            width:120px;
+            height: 120px;
+        }
     </style>
     <div class="container">
         <div class="row">

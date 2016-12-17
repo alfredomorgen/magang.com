@@ -6,6 +6,7 @@ use App\Http\Requests\JobRequest;
 use App\Job;
 use App\Jobseeker;
 use App\Constant;
+use App\Notification;
 use App\Transaction;
 use App\User;
 use App\Bookmark;
@@ -229,6 +230,14 @@ class CompanyController extends Controller
         $transaction->save();
 
         $transaction->jobseeker->user->notify(new ApprovedJob($id));
+
+        $notification = Notification::create([
+            'type' => 'Approved Job',
+            'user_id' => $transaction->jobseeker->user->id,
+            'notifiable_id' => Auth::user()->company->id,
+            'notifiable_type' => Constant::type_company,
+            'data' => $transaction->job_id,
+        ]);
 
         return back();
     }
