@@ -18,13 +18,13 @@
                             <div class="card-content grey-text text-darken-2">
                                 <div class="row">
                                     @if(Auth::user()->role == \App\Constant::user_company)
-                                        <div class="right-align">
+                                        <div class="right">
                                             @if(\App\Bookmark::where('target','=',\App\User::find($user->id)->jobseeker->id)
                                                 ->where('user_id','=',Auth::user()->id)
                                                 ->first() == null)
-                                                <a class="tooltipped btn-floating btn-small waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
+                                                <a class="tooltipped btn-floating btn-large waves-effect waves-light grey" data-tooltip="Bookmark Company" href="{{ route('company.add_bookmark_jobseeker',$user->id) }}" style="position: absolute; right: 1%;"><i class="material-icons">star</i></a>
                                             @else
-                                                <a class="tooltipped btn-floating btn-small waves-effect waves-light yellow" data-tooltip="Bookmark Company" href="{{ route('company.remove_bookmark_jobseeker',$user->id) }}"><i class="small material-icons">star</i></a>
+                                                <a class="tooltipped btn-floating btn-large waves-effect waves-light yellow darken-2" data-tooltip="Bookmark Company" href="{{ route('company.remove_bookmark_jobseeker',$user->id) }}" style="position: absolute; right: 1%"><i class="material-icons">star</i></a>
                                             @endif
                                         </div>
                                     @endif
@@ -50,8 +50,6 @@
                                             @if($user->phone != null)
                                                 <h6><i class="tiny material-icons">phone</i> {{ $user->phone }}</h6>
                                             @endif
-
-
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +77,7 @@
                                             @if($user->jobseeker->university!= NULL)
                                                 {{$user->jobseeker->university}}
                                             @else
-                                                    <span class="grey-text">Not filled</span>
+                                                <span class="grey-text">Not filled</span>
                                             @endif
                                             </span></p></li>
                                 </ul>
@@ -109,15 +107,12 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                    <li class="collection-header  amber darken-4 white-text"><h6><b>Job Interest</b></h6>
-                                    </li>
+                                    <li class="collection-header amber darken-4 white-text"><h6><b>Job Interest</b></h6></li>
                                     <li class="collection-item">
                                         @if($user->jobseeker->job_interest != NULL)
-
                                             @foreach ($user->jobseeker->job_interest as $job_interest)
                                                 <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
                                             @endforeach
-
                                         @else
                                             <span class="grey-text">Not filled</span>
                                         @endif
