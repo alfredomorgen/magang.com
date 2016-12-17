@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Job extends Model
 {
     use SoftDeletes;
-    protected $table = 'jobs';
-    protected $primaryKey = "id";
-
     protected $fillable = [
         'company_id',
         'job_category_id',
@@ -30,10 +27,5 @@ class Job extends Model
 
     public function transaction(){
         return $this->hasMany('\App\Transaction');
-    }
-
-    public function getCreatedAtAttribute()
-    {
-        return date('d/m/Y',strtotime($this->attributes['created_at']));
     }
 }

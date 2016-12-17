@@ -115,12 +115,11 @@ class CompanyController extends Controller
 
     public function manage_post()
     {
-        $job = Job::select('*')
-            ->where('company_id', '=', Auth::user()->company->id)
+        $jobs = Job::where('company_id', '=', Auth::user()->company->id)
             ->orderBy('created_at','desc')
             ->paginate(10);
         $data = [
-            'jobs' => $job
+            'jobs' => $jobs
         ];
         return view('company.manage_post', $data);
     }
