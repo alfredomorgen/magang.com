@@ -13,7 +13,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     {{--<div>Icons made by <a href="http://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>--}}
 
@@ -63,44 +63,30 @@
             <a id="logo-container" href="/" class="brand-logo">Magang</a>
             <ul class="right hide-on-med-and-down">
                 @if (Auth::guest())
-                    <ul id="dropdown2" class="dropdown-content white">
+                    <li><a class="dropdown-button" href="#" data-activates="dropdownLogin" data-constrainwidth="false" data-beloworigin="true">Login</a></li>
+
+                    <ul id="dropdownLogin" class="dropdown-content white">
                         <li><a href="{{ url('/login/1') }}" class="black-text"><h6>As Company</h6></a></li>
                         <li><a href="{{ url('/login/2') }}" class="black-text"><h6>As Jobseeker</h6></a></li>
                     </ul>
 
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2" data-beloworigin="true">Login</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdownRegister" data-beloworigin="true">Register</a></li>
 
-                    <ul id="dropdown3" class="dropdown-content white">
+                    <ul id="dropdownRegister" class="dropdown-content white">
                         <li><a href="{{ url('/register/1') }}" class="black-text"><h6>Company</h6></a></li>
                         <li><a href="{{ url('/register/2') }}" class="black-text"><h6>Jobseeker</h6></a></li>
                     </ul>
-
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3" data-beloworigin="true">Register</a></li>
                 @else
-                    <ul id="dropdown2" class="dropdown-content orange lighten-4">
-                        <li>
-                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
-
                     <li>
                         <a id="notificationBox" class="dropdown-button" data-activates="dropdownNotifications" data-beloworigin="true" data-constrainwidth="false">
                             <div class="row">
-                                <div class="col l3"><i class="material-icons">chat_bubble_outline</i></div>
-
-                                <div id="notificationCount" class="col l1">
-                                    @if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
-                                        <span class="new badge white red-text" data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}</span>
-                                    @endif
-                                </div>
+                                <i class="material-icons left">chat_bubble_outline</i>
+                                @if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
+                                    <span class="new badge white red-text" data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}</span>
+                                @endif
                             </div>
                         </a>
                     </li>
-
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2" data-beloworigin="true">{{ Auth::user()->name }}</a></li>
 
                     <ul id="dropdownNotifications" class="dropdown-content lighten-4" style="width:420px;">
                         <ul class="collection" style="margin:0px">
@@ -150,6 +136,17 @@
                                 @endforeach
                             @endif
                         </ul>
+                    </ul>
+
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdownLogout" data-beloworigin="true">{{ Auth::user()->name }}</a></li>
+
+                    <ul id="dropdownLogout" class="dropdown-content orange lighten-4">
+                        <li>
+                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 @endif
             </ul>
