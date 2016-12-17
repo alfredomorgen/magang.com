@@ -50,6 +50,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">alarm</i>
                         <select name="type" id="type">
+                            <option disabled selected>Choose Working Time</option>
                             <option {{ $job->type == \App\Constant::job_parttime ? 'selected' : '' }} value="{{ \App\Constant::job_parttime }}">Part Time</option>
                             <option {{ $job->type == \App\Constant::job_fulltime ? 'selected' : '' }} value="{{ \App\Constant::job_fulltime }}">Full Time</option>
                         </select>
@@ -61,6 +62,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">attach_money</i>
                         <select name="salary" id="salary">
+                            <option disabled selected>Choose Salary</option>
                             <option {{ $job->salary == \App\Constant::job_notpaid ? 'selected' : '' }} value="{{ \App\Constant::job_notpaid }}">Not Paid</option>
                             <option {{ $job->salary == \App\Constant::job_paid ? 'selected' : '' }} value="{{ \App\Constant::job_paid }}">Paid</option>
                         </select>
@@ -71,7 +73,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">add_box</i>
-                        <textarea cols="50" rows="8" name="benefit" id="benefit" class="materialize-textarea" value="{{ $job->benefit }}" placeholder="Your Benefit(s) here . . ." style="resize:none">{{ $job->benefit }}</textarea>
+                        <textarea cols="50" rows="8" name="benefit" id="benefit" class="materialize-textarea" placeholder="Your Benefit(s) here . . ." style="resize:none">{{ $job->benefit }}</textarea>
                         <label for="benefit">Benefit</label>
                         @if ($errors->has('benefit'))
                             <strong>{{ $errors->first('benefit') }}</strong>
@@ -82,7 +84,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">playlist_add_check</i>
-                        <textarea cols="50" rows="8" name="requirement" id="requirement" class="materialize-textarea" value="{{ $job->requirement }}" placeholder="Your requirement(s) here . . ." style="resize:none">{{ $job->requirement }}</textarea>
+                        <textarea cols="50" rows="8" name="requirement" id="requirement" class="materialize-textarea" placeholder="Your requirement(s) here . . ." style="resize:none">{{ $job->requirement }}</textarea>
                         <label for="requirement">Requirement</label>
                         @if ($errors->has('requirement'))
                             <strong>{{ $errors->first('requirement') }}</strong>
@@ -93,7 +95,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">description</i>
-                        <textarea cols="50" rows="8" name="description" id="description" class="materialize-textarea" value="{{ $job->description }}" placeholder="Your Description here . . ." style="resize:none">{{ $job->description }}</textarea>
+                        <textarea cols="50" rows="8" name="description" id="description" class="materialize-textarea" placeholder="Your Description here . . ." style="resize:none">{{ $job->description }}</textarea>
                         <label for="description">Description</label>
                         @if ($errors->has('description'))
                             <strong>{{ $errors->first('description') }}</strong>

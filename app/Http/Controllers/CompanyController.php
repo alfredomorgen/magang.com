@@ -14,6 +14,7 @@ use App\Bookmark;
 
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\Post_jobRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,12 @@ class CompanyController extends Controller
 
     public function post_job()
     {
-        return view('company.post_job');
+        $job_categories = Job_Category::all();
+        $data = [
+            'job_categories' => $job_categories,
+        ];
+
+        return view('company.post_job', $data);
     }
 
     public function store(JobRequest $request)
@@ -108,11 +114,11 @@ class CompanyController extends Controller
             'benefit' => $request->get('type'),
             'requirement' => $request->get('requirement'),
             'description' => $request->get('description'),
-            'deadline' => $request->get('deadline'),
+            'deadline' => Carbon::now()->addDays(30)->toDateTimeString(),
             'status' => Constant::status_active,
         ]);
 
-        return redirect('/company/manage_post')->with('success', 'New Job Added');
+        return redirect()->route('company.manage_post')->with('success', 'New Job Added');
     }
 
     public function manage_post()
@@ -121,7 +127,7 @@ class CompanyController extends Controller
             ->orderBy('created_at','desc')
             ->paginate(10);
         $data = [
-            'jobs' => $jobs
+            'jobs' => $jobs,
         ];
         return view('company.manage_post', $data);
     }
