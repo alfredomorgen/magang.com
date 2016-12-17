@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobRequest;
 use App\Job;
+use App\Job_Category;
 use App\Jobseeker;
 use App\Constant;
 use App\Notification;
@@ -127,32 +128,41 @@ class CompanyController extends Controller
 
     public function manage_post_edit($id)
     {
-        $job = Job::find($id);
-        $data = ['job' => $job];
+        $job = Job::findOrFail($id);
+        $job_categories = Job_Category::all();
+
+        $data = [
+            'job' => $job,
+            'job_categories' => $job_categories,
+        ];
 
         return view('company.manage_post_edit', $data);
     }
 
-    public function manage_post_update($id)
+    public function manage_post_update($id, JobRequest $request)
     {
-        $job = Job::find($id);
-        $job->job_category_id = Input::get('job_category_id');
-        $job->name = Input::get('name');
-        $job->type = Input::get('type');
-        $job->salary = Input::get('salary');
-        $job->period = Input::get('period');
-        $job->benefit = Input::get('benefit');
-        $job->requirement = Input::get('requirement');
-        $job->description = Input::get('description');
-        $job->save();
+        $job = Job::findOrFail($id);
 
+        $job->job_category_id = $request->get('job_category_id');
+
+        $job->name = $request->get('name');
+        $job->location = $request->get('location');
+        $job->type = $request->get('type');
+        $job->salary = $request->get('salary');
+
+        $job->benefit = $request->get('benefit');
+        $job->requirement = $request->get('requirement');
+        $job->description = $request->get('description');
+
+        $job->save();
         return redirect('/company/manage_post/')->with('success','Job Updated with ID: '.$id);
     }
 
     public function manage_post_close($id)
     {
-        $job = Job::find($id);
+        $job = Job::findOrFail($id);
         $job->status = Constant::status_inactive;
+
         $job->save();
         return redirect('/company/manage_post/')->with('success', 'Job Closed with ID: '.$id);
     }

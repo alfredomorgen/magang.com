@@ -25,11 +25,10 @@ class JobRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'job_category_id' => 'required|in:0,1,2,3,',
+            'job_category_id' => 'required',
             'location' => 'required',
             'type' => 'required',
             'salary' => 'required|in:0,1',
-            'period' => 'required',
             'benefit' => '',
             'requirement' => 'required',
             'description' => 'required',
