@@ -50,6 +50,70 @@
                             </div>
 
                             <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input type="date" max="{{ \Carbon\Carbon::now()->toDateString() }}" class="datepicker" id="date" name="date" value="{{ date('Y-m-d', strtotime($user->jobseeker->dob)) }}">
+                                    <label for="date" class="active">Date of Birth</label>
+                                    @if ($errors->has('date'))
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">perm_identity</i>
+                                    <select>
+                                        <option value="" disabled selected>--Choose Gender--</option>
+                                        <option {{ $user->jobseeker->gender == \App\Constant::gender_male ? 'selected' : '' }} value="{{ \App\Constant::gender_male }}">Male</option>
+                                        <option {{ $user->jobseeker->gender == \App\Constant::gender_female ? 'selected' : '' }} value="{{ \App\Constant::gender_female }}">Female</option>
+                                    </select>
+                                    <label for="gender">Gender</label>
+                                    @if ($errors->has('gender'))
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">location_city</i>
+                                    <input type="text" class="validate" id="location" name="location" value="{{ $user->jobseeker->university}}">
+                                    <label for="location">University</label>
+                                    @if ($errors->has('location'))
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s4">
+                                    <i class="material-icons prefix">business_center</i>
+                                    <input type="text" class="validate" id="location" name="location" value="{{ $user->jobseeker->major}}">
+                                    <label for="location">Major</label>
+                                    @if ($errors->has('location'))
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    @endif
+                                </div>
+
+                                <div class="input-field col s2">
+                                    <i class="material-icons prefix">assessment</i>
+                                    <input type="number" min="0" max="4" step="0.01" class="validate" id="location" name="location" value="{{ $user->jobseeker->gpa}}">
+                                    <label for="location">GPA</label>
+                                    @if ($errors->has('location'))
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">location_on</i>
+                                    <input type="text" class="validate" id="location" name="location" value="{{ $user->location}}">
+                                    <label for="location">Location</label>
+                                    @if ($errors->has('location'))
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">mode_edit</i>
                                     <textarea class="materialize-textarea validate" id="description" name="description">{{ $user->description }}</textarea>
@@ -138,5 +202,13 @@
 
             reader.readAsDataURL(filePhoto);
         });
+
+        $('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: 50,
+            max: $('#date').attr("max"),
+        });
+
+        $('select').material_select();
     </script>
 @endsection
