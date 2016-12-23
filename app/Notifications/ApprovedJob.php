@@ -41,9 +41,11 @@ class ApprovedJob extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'http://localhost:8000/')
-                    ->line('Thank you for using our application!');
+                    ->line('Good news ! Your resume has been accepted by the Company !')
+                    ->line('Please check on Magang.com, in "Applied Job" menu.')
+                    ->action('Go to Magang.com Now', 'http://localhost:8000/')
+                    ->line('P.S : Company will directly send Email to You for interview schedule.')
+                    ->line('Thank you for using our Website!');
     }
 
     /**
