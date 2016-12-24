@@ -8,6 +8,7 @@ use App\Job_Category;
 use App\Jobseeker;
 use App\Constant;
 use App\Notification;
+use App\Notifications\JobApproved;
 use App\Transaction;
 use App\User;
 use App\Bookmark;
@@ -245,7 +246,7 @@ class CompanyController extends Controller
         $transaction->status = Constant::status_active;
         $transaction->save();
 
-        $transaction->jobseeker->user->notify(new ApprovedJob($id));
+        $transaction->jobseeker->user->notify(new JobApproved($id));
 
         $notification = Notification::create([
             'type' => 'Approved Job',
