@@ -1,191 +1,369 @@
-<!DOCTYPE html>
-<html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Sunday Confirm Email</title>
+    <!-- Designed by https://github.com/kaytcat -->
+    <!-- Header image designed by Freepik.com -->
 
-    <style type="text/css" rel="stylesheet" media="all">
-        /* Media Queries */
-        @media only screen and (max-width: 500px) {
-            .button {
+
+    <style type="text/css">
+        /* Take care of image borders and formatting */
+
+        img {
+            max-width: 600px;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        .backgroundTable {
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        .ExternalClass * {
+            line-height: 115%;
+        }
+
+        /* General styling */
+
+        td {
+            font-family: Arial, sans-serif;
+            color: #6f6f6f;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+            width: 100%;
+            height: 100%;
+            color: #6f6f6f;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        h1 {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #27aa90;
+            text-decoration: none;
+        }
+
+        .force-full-width {
+            width: 100% !important;
+        }
+
+        .force-width-80 {
+            width: 80% !important;
+        }
+
+        .body-padding {
+            padding: 0 75px;
+        }
+
+        .mobile-align {
+            text-align: right;
+        }
+
+
+    </style>
+
+    <style type="text/css" media="screen">
+        @media screen {
+        @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900);
+            /* Thanks Outlook 2013! */
+            * {
+                font-family: 'Source Sans Pro', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
+            }
+
+            .w280 {
+                width: 280px !important;
+            }
+
+        }
+    </style>
+
+    <style type="text/css" media="only screen and (max-width: 480px)">
+        /* Mobile styles */
+        @media only screen and (max-width: 480px) {
+
+            table[class*="w320"] {
+                width: 320px !important;
+            }
+
+            td[class*="w320"] {
+                width: 280px !important;
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            img[class*="w320"] {
+                width: 250px !important;
+                height: 67px !important;
+            }
+
+            td[class*="mobile-spacing"] {
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+            }
+
+            *[class*="mobile-hide"] {
+                display: none !important;
+            }
+
+            *[class*="mobile-br"] {
+                font-size: 12px !important;
+            }
+
+            td[class*="mobile-w20"] {
+                width: 20px !important;
+            }
+
+            img[class*="mobile-w20"] {
+                width: 20px !important;
+            }
+
+            td[class*="mobile-center"] {
+                text-align: center !important;
+            }
+
+            table[class*="w100p"] {
                 width: 100% !important;
             }
+
+            td[class*="activate-now"] {
+                padding-right: 0 !important;
+                padding-top: 20px !important;
+            }
+
+            td[class*="mobile-block"] {
+                display: block !important;
+            }
+
+            td[class*="mobile-align"] {
+                text-align: left !important;
+            }
+
         }
     </style>
 </head>
-
-<?php
-
-$style = [
-    /* Layout ------------------------------ */
-
-        'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
-        'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
-
-    /* Masthead ----------------------- */
-
-        'email-masthead' => 'padding: 25px 0; text-align: center;',
-        'email-masthead_name' => 'font-size: 16px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
-
-        'email-body' => 'width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;',
-        'email-body_inner' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0;',
-        'email-body_cell' => 'padding: 35px;',
-
-        'email-footer' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0; text-align: center;',
-        'email-footer_cell' => 'color: #AEAEAE; padding: 35px; text-align: center;',
-
-    /* Body ------------------------------ */
-
-        'body_action' => 'width: 100%; margin: 30px auto; padding: 0; text-align: center;',
-        'body_sub' => 'margin-top: 25px; padding-top: 25px; border-top: 1px solid #EDEFF2;',
-
-    /* Type ------------------------------ */
-
-        'anchor' => 'color: #3869D4;',
-        'header-1' => 'margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;',
-        'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;',
-        'paragraph-sub' => 'margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;',
-        'paragraph-center' => 'text-align: center;',
-
-    /* Buttons ------------------------------ */
-
-        'button' => 'display: block; display: inline-block; width: 200px; min-height: 20px; padding: 10px;
-                 background-color: #3869D4; border-radius: 3px; color: #ffffff; font-size: 15px; line-height: 25px;
-                 text-align: center; text-decoration: none; -webkit-text-size-adjust: none;',
-
-        'button--green' => 'background-color: #22BC66;',
-        'button--red' => 'background-color: #dc4d2f;',
-        'button--blue' => 'background-color: #3869D4;',
-];
-?>
-
-<?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
-
-<body style="{{ $style['body'] }}">
-<table width="100%" cellpadding="0" cellspacing="0">
+<body class="body" style="padding:0; margin:0; display:block; background:#eeebeb; -webkit-text-size-adjust:none;"
+      bgcolor="#eeebeb">
+<table align="center" cellpadding="0" cellspacing="0" width="100%">
     <tr>
-        <td style="{{ $style['email-wrapper'] }}" align="center">
-            <table width="100%" cellpadding="0" cellspacing="0">
-                <!-- Logo -->
-                <tr>
-                    <td style="{{ $style['email-masthead'] }}">
-                        <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                            {{ config('app.name') }}
-                        </a>
-                    </td>
-                </tr>
+        <td align="center" valign="top" style="background-color:#eeebeb" width="100%">
 
-                <!-- Email Body -->
-                <tr>
-                    <td style="{{ $style['email-body'] }}" width="100%">
-                        <table style="{{ $style['email-body_inner'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
-                                    <!-- Greeting -->
-                                    <h1 style="{{ $style['header-1'] }}">
-                                        @if (! empty($greeting))
-                                            test
-                                            {{--{{ $greeting }}--}}
-                                        {{--@else--}}
-                                            {{--@if ($level == 'error')--}}
-                                                {{--Whoops!--}}
-                                            {{--@else--}}
-                                                {{--Hello!--}}
-                                            {{--@endif--}}
-                                        @endif
-                                    </h1>
+            <center>
 
-                                    <!-- Intro -->
-                                    @foreach ($introLines as $line)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            {{ $line }}
-                                        </p>
-                                    @endforeach
+                <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                    <tr>
+                        <td align="center" valign="top">
 
-                                <!-- Action Button -->
-                                    @if (isset($actionText))
-                                        <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
+
+                            <table style="margin:0 auto;" cellspacing="0" cellpadding="0" width="100%">
+                                <tr>
+                                    <td style="text-align: center;">
+                                        {{--<br>--}}
+                                        {{--<br>--}}
+                                        {{--<a href="http://localhost:8000/"><img class="w320" width="150" height="100"--}}
+                                        {{--src="http://static.sabda.org/blog/magang.png"--}}
+                                        {{--alt="company logo"/></a>--}}
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <table cellspacing="0" cellpadding="0" class="force-full-width"
+                                   style="background-color:#3bcdb0;">
+                                <tr>
+                                    <td style="background-color:#3bcdb0;">
+
+                                        <table cellspacing="0" cellpadding="0" class="force-full-width">
                                             <tr>
-                                                <td align="center">
-                                                    <?php
-                                                    switch ($level) {
-                                                        case 'success':
-                                                            $actionColor = 'button--green';
-                                                            break;
-                                                        case 'error':
-                                                            $actionColor = 'button--red';
-                                                            break;
-                                                        default:
-                                                            $actionColor = 'button--blue';
-                                                    }
-                                                    ?>
-
-                                                    <a href="{{ $actionUrl }}"
-                                                       style="{{ $fontFamily }} {{ $style['button'] }} {{ $style[$actionColor] }}"
-                                                       class="button"
-                                                       target="_blank">
-                                                        {{ $actionText }}
-                                                    </a>
+                                                <td style="font-size:40px; font-weight: 600; color: #ffffff; text-align:center;"
+                                                    class="mobile-spacing">
+                                                    <div class="mobile-br">&nbsp;</div>
+                                                    Hello ! You've been approved by the Company !
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:24px; text-align:center; padding: 0 75px; color: #6f6f6f;"
+                                                    class="w320 mobile-spacing">
+                                                    We would like you to know that your applied job to Company has been
+                                                    approved! Details
+                                                    below.
                                                 </td>
                                             </tr>
                                         </table>
-                                    @endif
 
-                                <!-- Outro -->
-                                    @foreach ($outroLines as $line)
-                                        <p style="{{ $style['paragraph'] }}">
-                                            {{ $line }}
-                                        </p>
-                                    @endforeach
-
-                                <!-- Salutation -->
-                                    <p style="{{ $style['paragraph'] }}">
-                                        Regards,<br>{{ config('app.name') }}
-                                    </p>
-
-                                    <!-- Sub Copy -->
-                                    @if (isset($actionText))
-                                        <table style="{{ $style['body_sub'] }}">
+                                        <table cellspacing="0" cellpadding="0" width="100%">
                                             <tr>
-                                                <td style="{{ $fontFamily }}">
-                                                    <p style="{{ $style['paragraph-sub'] }}">
-                                                        If you’re having trouble clicking the "{{ $actionText }}" button,
-                                                        copy and paste the URL below into your web browser:
-                                                    </p>
-
-                                                    <p style="{{ $style['paragraph-sub'] }}">
-                                                        <a style="{{ $style['anchor'] }}" href="{{ $actionUrl }}" target="_blank">
-                                                            {{ $actionUrl }}
-                                                        </a>
-                                                    </p>
+                                                <td>
+                                                    <img src="https://www.filepicker.io/api/file/4BgENLefRVCrgMGTAENj"
+                                                         style="max-width:100%; display:block;">
                                                 </td>
                                             </tr>
                                         </table>
-                                    @endif
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
 
-                <!-- Footer -->
-                <tr>
-                    <td>
-                        <table style="{{ $style['email-footer'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
-                                    <p style="{{ $style['paragraph-sub'] }}">
-                                        &copy; {{ date('Y') }}
-                                        <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
-                                        All rights reserved.
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table cellspacing="0" cellpadding="0" class="force-full-width" bgcolor="#ffffff">
+                                <tr>
+                                    <td style="background-color:#ffffff; padding-top: 15px;">
+
+                                        <center>
+                                            <table style="margin:0 auto;" cellspacing="0" cellpadding="0"
+                                                   class="force-width-80">
+                                                <tr>
+                                                    <td style="text-align:left;">
+                                                        {{--<br>--}}
+                                                        {{--<strong>Shipping Address:</strong><br>--}}
+                                                        {{--Bob Erlicious<br>--}}
+                                                        {{--1234 Bobbz Way <br>--}}
+                                                        {{--Victoria, BC <br>--}}
+                                                        {{--V2A 7D8--}}
+                                                    </td>
+                                                    <td style="text-align:right; vertical-align:top;">
+                                                        {{--<br>--}}
+                                                        {{--<b>Order: 23130</b> <br>--}}
+                                                        {{--2014-04-23--}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table style="margin:0 auto;" cellspacing="0" cellpadding="0"
+                                                   class="force-width-80">
+                                                <tr>
+                                                    <td class="mobile-block">
+                                                        <br>
+
+                                                        <table cellspacing="0" cellpadding="0" class="force-full-width">
+                                                            <tr>
+                                                                <td style="border-bottom:1px solid #e3e3e3; font-weight: bold; text-align:left">
+                                                                    Job Approved Date
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align:left;">
+                                                                    {{ date("D, j F Y, g:i a") }}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                            <table style="margin: 0 auto;" cellspacing="0" cellpadding="0"
+                                                   class="force-width-80">
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <br>
+                                                        P.S : Company will directly send Email to You for interview
+                                                        schedule.<br>
+                                                        Please check on Magang.com, in "Applied Job" menu.<br><br>
+                                                        Regards,<br>{{ config('app.name') }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </center>
+
+                                        <table style="margin:0 auto;" cellspacing="0" cellpadding="10" width="100%">
+                                            <tr>
+                                                <td style="text-align:center; margin:0 auto;">
+                                                    <br>
+                                                    <div><!--[if mso]>
+                                                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml"
+                                                                xmlns:w="urn:schemas-microsoft-com:office:word"
+                                                                href="http://"
+                                                                style="height:45px;v-text-anchor:middle;width:180px;"
+                                                                stroke="f" fillcolor="#f5774e">
+                                                            <w:anchorlock/>
+                                                            <center>
+                                                        <![endif]-->
+                                                        <a href="http://localhost:8000/"
+                                                           style="background-color:#f5774e;color:#ffffff;display:inline-block;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:45px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;">Go
+                                                            to Magang.com</a>
+                                                        <!--[if mso]>
+                                                        </center>
+                                                        </v:rect>
+                                                        <![endif]--></div>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                        <table cellspacing="0" cellpadding="0" bgcolor="#363636"
+                                               class="force-full-width">
+                                            <tr>
+                                                <td style="background-color:#363636; text-align:center;">
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#f0f0f0; font-size: 14px; text-align:center; padding-bottom:4px;">
+                                                    &copy; {{ date('Y') }} All Rights Reserved
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#27aa90; font-size: 14px; text-align:center;">
+                                                    <a href="http://localhost:8000/">Magang.com</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:12px;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </td>
+                    </tr>
+                </table>
+
+            </center>
+
+
         </td>
     </tr>
 </table>
