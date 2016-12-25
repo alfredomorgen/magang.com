@@ -9,6 +9,7 @@ use App\Http\Requests\JobseekerRequest;
 use App\Job;
 use App\Message;
 use App\Notification;
+use App\Notifications\SomeoneHasAppliedToYourJob;
 use App\Report;
 use App\Transaction;
 use App\User;
@@ -103,7 +104,14 @@ class JobseekerController extends Controller
                 'job_id' => $job_id,
                 'jobseeker_id' => Auth::user()->jobseeker->id,
             ]);
-            
+
+            //kirim email ke perusahaan
+//            $jobId = Job::find($job_id);
+//            $jobId->company->user->notify(new SomeoneHasAppliedToYourJob($job_id));
+//            $send_email_company = Job::find($job_id);
+//            $send_email_company->company->user->notify(new SomeoneHasAppliedToYourJob($job_id));
+
+
             $notification = Notification::create([
                 'type' => 'Applied job',
                 'user_id' => $job->company->user->id,
