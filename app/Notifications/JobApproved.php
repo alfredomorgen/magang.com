@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessageJobSeeker;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class JobApproved extends Notification
@@ -40,12 +41,7 @@ class JobApproved extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('Good news ! Your resume has been accepted by the Company !')
-            ->line('Please check on Magang.com, in "Applied Job" menu.')
-            ->action('Go to Magang.com', 'http://localhost:8000/')
-            ->line('P.S : Company will directly send Email to You for interview schedule.')
-            ->line('Thank you for using our Website!');
+        return (new MailMessageJobSeeker);
     }
 
     /**
