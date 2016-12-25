@@ -292,8 +292,8 @@
                                    width="100%">
                                 <tr>
                                     <td class="header center" width="100%">
-                                        <a href="#">
-                                            Company Name
+                                        <a href="http://localhost:8000/">
+                                            Magang.com
                                         </a>
                                     </td>
                                 </tr>
@@ -317,7 +317,7 @@
                                             <table class="soapbox" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td class="soapbox-title">
-                                                        Check out my stuff on Awesome Co!
+                                                        Someone Apply to Your Job
                                                     </td>
                                                 </tr>
                                             </table>
@@ -330,7 +330,7 @@
                                                             <table class="status" bgcolor="#fffeea" cellspacing="0">
                                                                 <tr>
                                                                     <td class="status-cell">
-                                                                        Coupon code: <b>13448278949</b>
+                                                                        Job's Name: <b>U18a Evolette</b>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -373,12 +373,10 @@
                                                                 </td>
                                                                 <td class="body-text-cell" width="300"
                                                                     style="padding-bottom:4px;">
-                                                                    <b>Hi Bob,</b><br>
+                                                                    <b>Hi (Company's Name),</b><br>
                                                                     <br>
-                                                                    I set up an Awesome Co profile where I can do tons
-                                                                    of really awesome stuff! I want you to follow me so
-                                                                    you can see it all. Once you join Awesome Co, you'll
-                                                                    be able to do all sorts of Awesome stuff too!<br>
+                                                                    Looks like someone has submit his/her application to
+                                                                    purpose your Job(s)!<br>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -387,9 +385,11 @@
                                                             <tr>
                                                                 <td class="body-text-cell"
                                                                     style="text-align:left; padding-bottom:30px;">
-                                                                    Because I've invited you, you can also use the above
-                                                                    coupon code to receive a 50% discount on you first
-                                                                    months subscription!
+                                                                    Please take a look in our website for details,
+                                                                    <br><b>Login-> Manage Post-> View Candidates</b>
+                                                                    Menu.
+                                                                    <br><br>We hope you find the good one for your
+                                                                    Company.
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -408,20 +408,21 @@
                                                                     Sign up now!
                                                                 </center>
                                                             </v:roundrect>
-                                                            <![endif]--><a href="#"
-                                                                           style="background-color:#41CC00;background-image:url(https://www.filepicker.io/api/file/N8GiNGsmT6mK6ORk00S7);border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;text-shadow: -1px -1px #47A54B;line-height:36px;text-align:center;text-decoration:none;width:190px;-webkit-text-size-adjust:none;mso-hide:all;">Sign
-                                                                up now!</a></div>
+                                                            <![endif]--><a href="http://localhost:8000/login/1"
+                                                                           style="background-color:#41CC00;background-image:url(https://www.filepicker.io/api/file/N8GiNGsmT6mK6ORk00S7);border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;text-shadow: -1px -1px #47A54B;line-height:36px;text-align:center;text-decoration:none;width:190px;-webkit-text-size-adjust:none;mso-hide:all;">Go
+                                                                to Magang.com</a></div>
 
                                                         <table class="body-signature-block">
                                                             <tr>
                                                                 <td class="body-thanks-cell">
-                                                                    Thanks so much,
+                                                                    Thank You for using our Website,
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="body-signature-cell">
-                                                                    <img src="https://www.filepicker.io/api/file/2R9HpqboTPaB4NyF35xt"
-                                                                         alt="Company Name">
+                                                                    <!-- <img src="https://www.filepicker.io/api/file/2R9HpqboTPaB4NyF35xt"
+                                                                         alt="Company Name"> -->
+                                                                    Magang.com
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -441,22 +442,6 @@
                 <table class="w320" bgcolor="#E5E5E5" cellpadding="0" cellspacing="0" border="0" width="100%">
                     <tr>
                         <td style="border-top:1px solid #B3B3B3;" align="center">
-                            <center>
-                                <table class="w320" cellspacing="0" cellpadding="0" width="500" bgcolor="#E5E5E5">
-                                    <tr>
-                                        <td>
-                                            <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#E5E5E5">
-                                                <tr>
-                                                    <td class="center" style="padding:25px; text-align:center;">
-                                                        <b><a href="#">Get in touch</a></b> if you have any questions or
-                                                        feedback
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </center>
                         </td>
                     </tr>
                     <tr>
@@ -471,7 +456,6 @@
                                                         <a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                                                         <span class="footer-group">
                           <a href="#">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                          <a href="#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                           <a href="#">Support</a>
                         </span>
                                                     </td>
