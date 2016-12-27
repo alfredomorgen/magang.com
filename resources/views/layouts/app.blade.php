@@ -82,7 +82,7 @@
                             <div class="row">
                                 <i class="material-icons left">chat_bubble_outline</i>
                                 @if(Auth::user()->notification->where('read_at','=',NULL)->count() != 0)
-                                    <span class="new badge white red-text" data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}</span>
+                                    <span class="new badge white red-text" id="notificationCount" data-badge-caption="">{{Auth::user()->notification->where('read_at','=',NULL)->count()}}</span>
                                 @endif
                             </div>
                         </a>
@@ -203,7 +203,7 @@
                     method: "get",
                     url: '/home/readNotifications',
                 }).done(function () {
-                    $("#notificationCount").empty();
+                    $("#notificationCount").remove();
                 });
             });
         });
