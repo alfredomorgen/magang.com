@@ -127,10 +127,11 @@
                             <div class="row">
                                 <div class="col s12 m12">
                                     <ul class="collection with-header grey-text text-darken-2 z-depth-1">
-                                        <li class="collection-header  amber darken-4 white-text"><h6><b>Resume</b></h6>
-                                        </li>
-                                        <li class="collection-item">
-                                            <a class="waves-effect blue btn" target="_blank" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">View</a>
+                                        <li class="collection-header  amber darken-4 white-text"><h6><b>Resume</b></h6></li>
+                                        <li class="collection-item center">
+                                            <a class="waves-effect blue btn center" target="_blank" href="{{ asset('uploads/'.$user->jobseeker->resume) }}">Download</a>
+                                            <p></p>
+                                            <object data="{{ asset('uploads/'.$user->jobseeker->resume) }}" type="application/pdf" width="100%" height="600px"></object>
                                         </li>
                                     </ul>
                                 </div>
