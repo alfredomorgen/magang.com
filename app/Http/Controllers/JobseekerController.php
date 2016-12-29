@@ -57,12 +57,19 @@ class JobseekerController extends Controller
     public function update($user_id, JobseekerRequest $request){
         $user = User::find($user_id);
         if($user != null){
-            $user->phone = $request->get('phone');
-            $user->description = $request->get('description');
-
             if($request->has('password')){
                 $user->password = bcrypt($request->get('password'));
             }
+
+            $user->phone = $request->get('phone');
+            $user->jobseeker->dob = $request->get('dob');
+            $user->jobseeker->gender = $request->get('gender');
+
+            $user->jobseeker->university = $request->get('university');
+            $user->jobseeker->major = $request->get('major');
+            $user->jobseeker->gpa = $request->get('gpa');
+
+            $user->description = $request->get('description');
 
             if($request->hasFile('photo')){
                 $photo = $request->file('photo');
@@ -83,6 +90,7 @@ class JobseekerController extends Controller
             }
 
             $user->save();
+            $user->jobseeker->save();
             return redirect()->route('jobseeker.index', $user_id);
         } else {
             return redirect('/');
