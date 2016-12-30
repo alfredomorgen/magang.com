@@ -15,6 +15,10 @@
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+
+    {{--footer bootstrap--}}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
     {{--<div>Icons made by <a href="http://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>--}}
 
     <!-- Scripts -->
@@ -54,8 +58,228 @@
         main {
             flex: 1 0 auto;
         }
+
+        /*untuk footer*/
+        .footer-distributed{
+            background-color: #292c2f;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+
+            padding: 55px 50px;
+            margin-top: 80px;
+        }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right{
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left{
+            width: 40%;
+        }
+
+        /* The company logo */
+
+        .footer-distributed h3{
+            color:  #ffffff;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+        .footer-distributed h3 span{
+            color:  #5383d3;
+        }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links{
+            color:  #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+        .footer-distributed .footer-links a{
+            display:inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color:  inherit;
+        }
+
+        .footer-distributed .footer-company-name{
+            color:  #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center{
+            width: 35%;
+        }
+
+        .footer-distributed .footer-center i{
+            background-color:  #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+        .footer-distributed .footer-center i.fa-envelope{
+            font-size: 17px;
+            line-height: 38px;
+        }
+
+        .footer-distributed .footer-center p{
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            margin:0;
+        }
+
+        .footer-distributed .footer-center p span{
+            display:block;
+            font-weight: normal;
+            font-size:14px;
+            line-height:2;
+        }
+
+        .footer-distributed .footer-center p a{
+            color:  #5383d3;
+            text-decoration: none;;
+        }
+
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right{
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about{
+            line-height: 20px;
+            color:  #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-company-about span{
+            display: block;
+            color:  #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-distributed .footer-icons{
+            margin-top: 25px;
+        }
+
+        .footer-distributed .footer-icons a{
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color:  #33383b;
+            border-radius: 2px;
+
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+        /* If you don't want the footer to be responsive, remove these media queries */
+
+        @media (max-width: 880px) {
+
+            .footer-distributed{
+                font: bold 14px sans-serif;
+            }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right{
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .footer-distributed .footer-center i{
+                margin-left: 0;
+            }
+
+        }
+
+
     </style>
 </head>
+
+{{--modals--}}
+<!-- Modal Structure -->
+<div id="contactUs" class="modal bottom-sheet" style="background-image: url({{ asset('images/modalfooter1.jpeg') }}); background-repeat: no-repeat; background-size: 100% auto;"">
+    <div class="modal-content">
+        <h4 class=" black-text ">Contact Us</h4>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="url({{ asset('images/j9.jpg') }})" alt class="circle">
+                <span class="title">Alfredo Romero Morgen Wiria</span>
+                <p>
+                    Binus University - Binusian 2017
+                </p>
+                <div class="secondary-content">
+                    Contact :
+                    <a href="https://www.facebook.com/AlfredoMorgen"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/alfredomorgen"><i class="fa fa-github"></i></a>
+                </div>
+            </li>
+            <li class="collection-item avatar">
+                <img src="url({{ asset('images/j5.jpg') }})" alt class="circle">
+                <span class="title">Axel Soedarsono</span>
+                <p>
+                    Binus University - Binusian 2017
+                </p>
+                <div class="secondary-content">
+                    Contact :
+                    <a href="https://www.facebook.com/axel.soedarsono"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/axelsoedarsono"><i class="fa fa-github"></i></a>
+                </div>
+            </li>
+            <li class="collection-item avatar">
+                <img src="url({{ asset('images/j9.jpg') }})" alt class="circle">
+                <span class="title">Edward Hashner Wijaya</span>
+                <p>
+                    Binus University - Binusian 2017
+                </p>
+                <div class="secondary-content">
+                    Contact :
+                    <a href="https://www.facebook.com/hashner.edward"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/edwardhashner"><i class="fa fa-github"></i></a>
+                </div>
+        </ul>
+    </div>
+</div>
+
+{{--modals--}}
+
 
 <body style="background-image: url({{ asset('images/office.jpg') }}); background-color: #eeeeee; background-repeat: no-repeat; background-attachment: fixed; background-size: 100% auto;">
     <nav class="@if(Auth::guest() || Auth::user()->role == \App\Constant::user_jobseeker) light-blue lighten-1 @elseif(Auth::user()->role == \App\Constant::user_admin) red @else orange darken-3  @endif" role="navigation">
@@ -160,31 +384,93 @@
         @yield('content')
     </main>
 
-    <footer class="page-footer" style="display: none; background-image: url({{ asset('images/footers7.jpg') }}); background-repeat: no-repeat; background-size: 100% auto;">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Magang Internship</h5>
-                    <p class="white-text text-lighten-4">We help you find the right place for Internship.</p>
-                </div>
+    {{--<footer class="page-footer" style="display: none; background-image: url({{ asset('images/footers7.jpg') }}); background-repeat: no-repeat; background-size: 100% auto;">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col l6 s12">--}}
+                    {{--<h5 class="white-text">Magang Internship</h5>--}}
+                    {{--<p class="white-text text-lighten-4">We help you find the right place for Internship.</p>--}}
+                {{--</div>--}}
 
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Contact</h5>
-                    <ul>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>
-                        <li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>
-                    </ul>
-                </div>
-            </div>
+                {{--<div class="col l4 offset-l2 s12">--}}
+                    {{--<h5 class="white-text">Contact</h5>--}}
+                    {{--<ul>--}}
+                        {{--<li><a class="white-text text-lighten-4" href="https://www.facebook.com/AlfredoMorgen">Alfredo (alfredo7romero@gmail.com)</a></li>--}}
+                        {{--<li><a class="white-text text-lighten-4" href="https://www.facebook.com/axel.soedarsono">Axel (axelso@live.com)</a></li>--}}
+                        {{--<li><a class="white-text text-lighten-4" href="https://www.facebook.com/hashner.edward">Hashner (edwardhashner@gmail.com)</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+        {{--<div class="footer-copyright">--}}
+            {{--<div class="container white-text text-lighten-4">--}}
+                {{--© 2016 Copyright Magang Internship--}}
+                {{--<a class="white-text text-lighten-4 right" href="#!"></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</footer>--}}
+
+    <footer class="footer-distributed" style="display: none;">
+
+        <div class="footer-left">
+
+            <h3>Magang<span>.com</span></h3>
+
+            <p class="footer-links">
+                <a href="http://localhost:8000/">Home</a>
+                ·
+                <a href="http://localhost:8000/a">Blog</a>
+                ·
+                <a href="http://localhost:8000/b">Pricing</a>
+                ·
+                <a href="http://localhost:8000/c">About</a>
+                ·
+                <a href="http://localhost:8000/d">Faq</a>
+                ·
+                <a href="#contactUs">Contact</a>
+            </p>
+
+            <p class="footer-company-name">Magang Internship &copy; {{ date('Y') }}</p>
         </div>
 
-        <div class="footer-copyright">
-            <div class="container white-text text-lighten-4">
-                © 2016 Copyright Magang Internship
-                <a class="white-text text-lighten-4 right" href="#!"></a>
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>U 18A Street</span> Evolette Residence, Jakarta - Indonesia</p>
             </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+628 123 123</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p>perfectmagang@gmail.com</p>
+            </div>
+
         </div>
+
+        <div class=" footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                We help you find the right place for Internship.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="https://www.facebook.com/axel.soedarsono"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/alfredomorgen"><i class="fa fa-twitter"></i></a>
+                <a href="https://id.linkedin.com/in/edward-hashner-5a5a6bb5"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/alfredomorgen"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
     </footer>
 
     @yield('scripts')
@@ -207,6 +493,14 @@
                 });
             });
         });
+
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+
+
+
     </script>
 </body>
 </html>
