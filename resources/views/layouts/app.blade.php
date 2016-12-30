@@ -240,39 +240,48 @@
         <h4 class=" black-text ">Contact Us</h4>
         <ul class="collection">
             <li class="collection-item avatar">
-                <img src="url({{ asset('images/j9.jpg') }})" alt class="circle">
-                <span class="title">Alfredo Romero Morgen Wiria</span>
+                <img src="/images/j9.jpg" alt class="circle">
+                <span class="title"><b>Alfredo Romero Morgen Wiria</b></span>
                 <p>
-                    Binus University - Binusian 2017
+                    <b>University</b>      : Binus University - Binusian 2017 <br>
+                    <b>Major</b>         : Computer Science - Software Engineering <br>
+                    <b>Email</b>          : alfredo7romero@gmail.com <br>
+                    <b>Contact Number</b> : -
                 </p>
                 <div class="secondary-content">
                     Contact :
-                    <a href="https://www.facebook.com/AlfredoMorgen"><i class="fa fa-facebook"></i></a> |
-                    <a href="https://github.com/alfredomorgen"><i class="fa fa-github"></i></a>
+                    <a href="https://www.facebook.com/AlfredoMorgen" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Facebook"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/alfredomorgen" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Github" ><i class="fa fa-github"></i></a>
                 </div>
             </li>
             <li class="collection-item avatar">
-                <img src="url({{ asset('images/j5.jpg') }})" alt class="circle">
-                <span class="title">Axel Soedarsono</span>
+                <img src="/images/j5.jpg" alt class="circle">
+                <span class="title"><b>Axel Soedarsono</b></span>
                 <p>
-                    Binus University - Binusian 2017
+                    <b>University</b>     : Binus University - Binusian 2017 <br>
+                    <b>Major</b>          : Computer Science - Software Engineering <br>
+                    <b>Email</b>          : axelso@live.com <br>
+                    <b>Contact Number</b> : +6281 9777 33738
                 </p>
                 <div class="secondary-content">
                     Contact :
-                    <a href="https://www.facebook.com/axel.soedarsono"><i class="fa fa-facebook"></i></a> |
-                    <a href="https://github.com/axelsoedarsono"><i class="fa fa-github"></i></a>
+                    <a href="https://www.facebook.com/axel.soedarsono" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Facebook"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/axelsoedarsono" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Github"><i class="fa fa-github"></i></a>
                 </div>
             </li>
             <li class="collection-item avatar">
-                <img src="url({{ asset('images/j9.jpg') }})" alt class="circle">
-                <span class="title">Edward Hashner Wijaya</span>
+                <img src="/images/j6.jpg" alt class="circle">
+                <span class="title"><b>Edward Hashner Wijaya</b></span>
                 <p>
-                    Binus University - Binusian 2017
+                    <b>University</b>     : Binus University - Binusian 2017 <br>
+                    <b>Major</b>          : Computer Science - Software Engineering <br>
+                    <b>Email</b>          : edwardhashner@gmail.com <br>
+                    <b>Contact Number</b> : -
                 </p>
                 <div class="secondary-content">
                     Contact :
-                    <a href="https://www.facebook.com/hashner.edward"><i class="fa fa-facebook"></i></a> |
-                    <a href="https://github.com/edwardhashner"><i class="fa fa-github"></i></a>
+                    <a href="https://www.facebook.com/hashner.edward" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Facebook"><i class="fa fa-facebook"></i></a> |
+                    <a href="https://github.com/edwardhashner" class="tooltipped" data-position="left" data-delay="50" data-tooltip="Github"><i class="fa fa-github"></i></a>
                 </div>
         </ul>
     </div>

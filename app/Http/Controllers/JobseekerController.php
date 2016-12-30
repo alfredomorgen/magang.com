@@ -114,10 +114,7 @@ class JobseekerController extends Controller
             ]);
 
             //kirim email ke perusahaan
-//            $jobId = Job::find($job_id);
-//            $jobId->company->user->notify(new SomeoneHasAppliedToYourJob($job_id));
-//            $send_email_company = Job::find($job_id);
-//            $send_email_company->company->user->notify(new SomeoneHasAppliedToYourJob($job_id));
+            $job->company->user->notify(new SomeoneHasAppliedToYourJob($job_id));
 
 
             $notification = Notification::create([

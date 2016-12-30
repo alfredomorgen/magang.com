@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp-mail.outlook.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'perfectmagang@gmail.com',
+        'address' => 'perfectmagang2017@outlook.com',
         'name' => 'Magang.com',
     ],
 
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => 'perfectmagang@gmail.com',
+    'username' => 'perfectmagang2017@outlook.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +97,7 @@ return [
     |
     */
 
-    'password' => 'perfectmagang2017',
+    'password' => 'perfect2017magang',
 
     /*
     |--------------------------------------------------------------------------
