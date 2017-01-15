@@ -34,7 +34,7 @@
                                 <div class="col l12">
                                     <ul class="collapsible" data-collapsible="expandable" style="margin:0px; border: 0px;">
                                         <li style="width:100%" class="white">
-                                            <div class="collapsible-header grey white-text" style="border: 0px;">Advanced Search</div>
+                                            <div class="collapsible-header orange darken-1 white-text" style="border: 0px;">Advanced Search</div>
                                             <div class="collapsible-body grey-text">
                                                 <div class="row" style="padding:10px 0px 0px 20px; margin-bottom: 0px;">
                                                     <div class="input-field col l2">
@@ -108,12 +108,19 @@
                                             <i class="material-icons">work</i></a> {{ $job->company->user->name }}<br>
                                             <i class="material-icons">location_on</i></a>{{ $job->job_location }}
                                         </div>
-                                        <div class="col l5">
-                                            <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)Part Time @else Full Time @endif<br>
-                                            <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)Paid @else Not Paid @endif
-                                        </div>
+                                        @if(Auth::guest())
+                                            <div class="col l5 grey-text">
+                                                <i class="material-icons ">av_timer</i> Employment Type <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Login to see Employment Type">error</i><br>
+                                                <i class="material-icons ">payment</i> Salary <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Login to see Salary">error</i>
+                                            </div>
+                                        @else
+                                            <div class="col l5">
+                                                <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)Part Time @else Full Time @endif<br>
+                                                <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)Paid @else Not Paid @endif
+                                            </div>
+                                        @endif
                                     </div>
-                                    <a href="{{ route('job.index', $job->job_id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
+                                    <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
                                 </div>
                             </div>
                         </li>
@@ -142,10 +149,17 @@
                                             <i class="material-icons">work</i></a> {{ $job->company->user->name }}<br>
                                             <i class="material-icons">location_on</i></a>{{ $job->location }}
                                         </div>
+                                        @if(Auth::guest())
+                                            <div class="col l5 grey-text">
+                                                <i class="material-icons ">av_timer</i> Employment Type <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Login to view">error</i><br>
+                                                <i class="material-icons ">payment</i> Salary
+                                            </div>
+                                        @else
                                         <div class="col l5">
                                             <i class="material-icons">av_timer</i></a>@if($job->type == \App\Constant::job_parttime)Part Time @else Full Time @endif<br>
                                             <i class="material-icons">payment</i></a>@if($job->salary == \App\Constant::job_paid)Paid @else Not Paid @endif
                                         </div>
+                                        @endif
                                     </div>
 
                                     <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>

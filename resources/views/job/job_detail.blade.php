@@ -69,26 +69,44 @@
                             <p>{!! nl2br ($job->description) !!}</p>
                         </div>
                         <div class="card-action">
-                            <h6 class="blue-text"><b>Benefit</b></h6>
-                            <p>{!! nl2br($job->benefit) !!}</p>
-                        </div>
-                        <div class="card-action">
                             <h6 class="blue-text"><b>Requirement</b></h6>
                             <p>{!! nl2br($job->requirement) !!}</p>
                         </div>
-                        <div class="card-action">
-                            <h6 class="blue-text"><b>Employment Type</b></h6>
-                            <p><i class="tiny material-icons">av_timer</i>@if($job->type == \App\Constant::job_fulltime) Full Time @else Part Time @endif</p>
-                        </div>
-                        <div class="card-action">
-                            <h6 class="blue-text"><b>Salary</b></h6>
-                            <p><i class="tiny material-icons">payment</i> @if($job->salary == \App\Constant::job_paid) Paid @else Not Paid @endif</p>
-                        </div>
-                        <div class="card-action">
-                            <h6 class="blue-text"><b>Period</b></h6>
-                            <p><i class="tiny material-icons">schedule</i> {!! nl2br($job->period) !!} Months</p>
-                        </div>
-
+                        @if(Auth::guest())
+                            <div class="card-action grey-text">
+                                <h6 class="blue-text"><b>Benefit</b></h6>
+                                <p>Login to view</p>
+                            </div>
+                            <div class="card-action grey-text">
+                                <h6 class="blue-text"><b>Employment Type</b></h6>
+                                <p>Login to view</p>
+                            </div>
+                            <div class="card-action grey-text">
+                                <h6 class="blue-text"><b>Salary</b></h6>
+                                <p><i class="tiny material-icons">payment</i> Login to view</p>
+                            </div>
+                            <div class="card-action grey-text">
+                                <h6 class="blue-text"><b>Period</b></h6>
+                                <p><i class="tiny material-icons">schedule</i> Login to view</p>
+                            </div>
+                        @else
+                            <div class="card-action">
+                                <h6 class="blue-text"><b>Benefit</b></h6>
+                                <p>{!! nl2br($job->benefit) !!}</p>
+                            </div>
+                            <div class="card-action">
+                                <h6 class="blue-text"><b>Employment Type</b></h6>
+                                <p><i class="tiny material-icons">av_timer</i>@if($job->type == \App\Constant::job_fulltime) Full Time @else Part Time @endif</p>
+                            </div>
+                            <div class="card-action">
+                                <h6 class="blue-text"><b>Salary</b></h6>
+                                <p><i class="tiny material-icons">payment</i> @if($job->salary == \App\Constant::job_paid) Paid @else Not Paid @endif</p>
+                            </div>
+                            <div class="card-action">
+                                <h6 class="blue-text"><b>Period</b></h6>
+                                <p><i class="tiny material-icons">schedule</i> {!! nl2br($job->period) !!} Months</p>
+                            </div>
+                        @endif
                         <div class="card-action">
                             <h6 class="blue-text"><b>Company Information</b></h6>
                             @if($job->company->website!= NULL)
@@ -134,7 +152,7 @@
             @elseif(Auth::user()->jobseeker->resume == null)
                 $('#btnApply').click(function (event) {
                     event.preventDefault();
-                    Materialize.toast('Please upload your CV first...', 3000, 'rounded');
+                    Materialize.toast('Please upload your CV on Profile', 3000, 'rounded');
                 });
             @endif
 
