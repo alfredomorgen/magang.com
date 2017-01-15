@@ -235,7 +235,7 @@
 
 {{--modals--}}
 <!-- Modal Structure -->
-<div id="contactUs" class="modal bottom-sheet" style="background-image: url({{ asset('images/modalfooter1.jpeg') }}); background-repeat: no-repeat; background-size: 100% auto;"">
+<div id="contactUs" class="modal bottom-sheet" style="background-image: url({{ asset('images/modalfooter2.jpg') }}); background-repeat: no-repeat; background-size: 100% auto;">
     <div class="modal-content">
         <h4 class=" black-text ">Contact Us</h4>
         <ul class="collection">
