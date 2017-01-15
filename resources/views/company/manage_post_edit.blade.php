@@ -105,7 +105,7 @@
 
                 <div class="col-md-8 col-md-offset-4 center-align">
                     <input type="submit" class="btn blue" value="Update Post Job">
-                    <a href="{{ url()->previous() }}" class="btn btn-default">Cancel</a>
+                    <a href="{{ route('company.manage_post') }}" class="btn btn-default">Cancel</a>
                 </div>
             </form>
         </div>
