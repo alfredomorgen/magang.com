@@ -59,9 +59,32 @@ trait AuthenticatesUsers
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
-        ]);
+//        $this->validate($request, [
+//            $this->username() => 'required', 'password' => 'required',
+//        ]);
+
+        $user_types = $request->get('user_types');
+        $user = User::where('email', '=', $request->get('email'))->first();
+
+        $messages = [
+            'in' => 'Please use the correct Login As form...',
+        ];
+
+        // Check if user is not found
+        if($user == null){
+            $this->validate($request, [
+                $this->username() => 'required',
+                'password' => 'required',
+                'user_types' => 'required|in:'.Constant::user_company.','.Constant::user_jobseeker,
+            ], $messages);
+        // Check if user uses the correct login form
+        } else {
+            $this->validate($request, [
+                $this->username() => 'required',
+                'password' => 'required',
+                'user_types' => 'required|in:'.$user->role,
+            ], $messages);
+        }
     }
 
     /**
