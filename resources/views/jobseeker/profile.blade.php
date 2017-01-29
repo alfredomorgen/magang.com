@@ -109,13 +109,9 @@
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header amber darken-4 white-text"><h6><b>Job Interest</b></h6></li>
                                     <li class="collection-item">
-                                        @if($user->jobseeker->job_interest != NULL)
-                                            @foreach ($user->jobseeker->job_interest as $job_interest)
-                                                <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
-                                            @endforeach
-                                        @else
-                                            <span class="grey-text">Not filled</span>
-                                        @endif
+                                        @foreach ($user->jobseeker->job_interest as $job_interest)
+                                            <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
+                                        @endforeach
                                     </li>
 
                                 </ul>
