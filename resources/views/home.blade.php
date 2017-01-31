@@ -99,7 +99,11 @@
                         <li class="collection-item avatar" style="padding-left:10px">
                             <div class="row" style="margin-bottom:auto">
                                 <div class="col l2">
-                                    <img src="{{ asset('images/'.$job->company->user->photo) }}" class="responsive-img">
+                                    @if($job->company->user->photo == null)
+                                        <img src="{{ asset(\App\Constant::default_photo) }}" class="responsive-img">
+                                    @else
+                                        <img src="{{ asset('images/'.$job->company->user->photo) }}" class="responsive-img">
+                                    @endif
                                 </div>
                                 <div class="col s12 l10">
                                     <span class="card-title">{{ $job->job_name }}</span><br>
