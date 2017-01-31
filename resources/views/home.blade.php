@@ -54,9 +54,13 @@
                                                             </div>
                                                             <div class="col l11">
                                                                 <select name="type" id="type">
+                                                                    @if(Auth::Guest())
+                                                                        <option value="" disabled>Login to choose</option>
+                                                                    @else
                                                                     <option value="" disabled selected> Employment Type</option>
                                                                     <option value="{{\App\Constant::job_parttime}}">Part Time</option>
                                                                     <option value="{{\App\Constant::job_fulltime}}">Full Time</option>
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -70,9 +74,13 @@
 
                                                             <div class="col l11">
                                                                 <select name="salary" id="salary">
+                                                                    @if(Auth::Guest())
+                                                                        <option value="" disabled>Login to choose</option>
+                                                                    @else
                                                                     <option value="" disabled selected>Salary</option>
                                                                     <option value="{{\App\Constant::job_notpaid}}">Not Paid</option>
                                                                     <option value="{{\App\Constant::job_paid}}">Paid</option>
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -115,7 +123,7 @@
                                         @if(Auth::guest())
                                             <div class="col l5 grey-text">
                                                 <i class="material-icons ">av_timer</i> Employment Type <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Login to see Employment Type">error</i><br>
-                                                <i class="material-icons ">payment</i> Salary <i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Login to see Salary">error</i>
+                                                <i class="material-icons ">payment</i> Salary
                                             </div>
                                         @else
                                             <div class="col l5">
@@ -124,7 +132,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <a href="{{ route('job.index', $job->id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
+                                    <a href="{{ route('job.index', $job->job_id) }}" class="waves-effect waves-light btn orange darken-2">View</a>
                                 </div>
                             </div>
                         </li>
