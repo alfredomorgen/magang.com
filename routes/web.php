@@ -221,6 +221,16 @@ Route::post('/jobseeker/{user_id}/update',[
     'as' => 'jobseeker.update',
 ]);
 
+Route::get('/jobseeker/{user_id}/job_interest_add', [
+    'uses' => 'JobseekerController@job_interest_add',
+    'as' => 'jobseeker.job_interest_add',
+]);
+
+Route::get('/jobseeker/{user_id}/job_interest_remove', [
+    'uses' => 'JobseekerController@job_interest_remove',
+    'as' => 'jobseeker.job_interest_remove',
+]);
+
 ////////////////
 // All users //
 ///////////////

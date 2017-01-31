@@ -109,11 +109,15 @@
                                 <ul class="collection with-header grey-text text-darken-2 z-depth-1">
                                     <li class="collection-header amber darken-4 white-text"><h6><b>Job Interest</b></h6></li>
                                     <li class="collection-item">
-                                        @foreach ($user->jobseeker->job_interest as $job_interest)
-                                            <p><span style="font-size: 1em"><i class="tiny material-icons blue-text">label</i> {{$job_interest->name}}</span></p>
-                                        @endforeach
+                                        @if(Auth::guest())
+                                        @elseif($user->id == Auth::user()->id)
+                                            <div class="chips chips-placeholder" id="chipsJobInterest"></div>
+                                        @else
+                                            @foreach ($user->jobseeker->job_interest as $job_interest)
+                                                <div class="chip">{{$job_interest->name}}</div>
+                                            @endforeach
+                                        @endif
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -140,6 +144,14 @@
     </div>
 @endsection
 
+{{--Add this user's job interests to an array (to be passed to jQuery--}}
+@php $job_interest_arr = []; @endphp
+@foreach ($user->jobseeker->job_interest as $job_interest)
+    @php
+        array_push($job_interest_arr, $job_interest->name)
+    @endphp
+@endforeach
+
 @section('scripts')
     <script>
         $(document).ready(function ()
@@ -150,6 +162,37 @@
             });
 
             Materialize.toast('{{ session('message') }}', 5000, 'rounded');
+
+            $('#chipsJobInterest').material_chip({
+                placeholder: 'Enter a Job Interest',
+                secondaryPlaceholder: '+Job Interest',
+                data: [
+                    <?php foreach ($job_interest_arr as $job_interest_item) {
+                        echo "{ tag: '".$job_interest_item."',},";
+                    }?>
+                ],
+            });
+
+            $('.chips').on('chip.add', function(e, chip){
+                $.ajax({
+                    method: "get",
+                    data: {
+                        name: chip.tag,
+                    },
+                    url: "{{ route('jobseeker.job_interest_add', $user) }}"
+                });
+            });
+
+            $('.chips').on('chip.delete', function(e, chip){
+                $.ajax({
+                    method: "get",
+                    data: {
+                        name: chip.tag,
+                    },
+                    url: "{{ route('jobseeker.job_interest_remove', $user) }}"
+                });
+            });
+
         });
     </script>
 @endsection

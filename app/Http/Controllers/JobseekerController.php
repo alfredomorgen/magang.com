@@ -7,6 +7,7 @@ use App\Company;
 use App\Constant;
 use App\Http\Requests\JobseekerRequest;
 use App\Job;
+use App\Job_Interest;
 use App\Message;
 use App\Notification;
 use App\Notifications\SomeoneHasAppliedToYourJob;
@@ -45,7 +46,7 @@ class JobseekerController extends Controller
     }
 
     public function edit($user_id){
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
         if($user != null){
             $data = ['user' => $user];
             return view('jobseeker.profile_edit', $data);
@@ -55,7 +56,7 @@ class JobseekerController extends Controller
     }
 
     public function update($user_id, JobseekerRequest $request){
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
         if($user != null){
             if($request->has('password')){
                 $user->password = bcrypt($request->get('password'));
@@ -315,5 +316,23 @@ class JobseekerController extends Controller
         $data = ['message' => $message];
         return redirect()->route('job.index', $job_id)->with($data);
     }
-    
+
+    public function job_interest_add($user_id, Request $request)
+    {
+        $user = User::findOrFail($user_id);
+        $job_interest = Job_Interest::create([
+            'jobseeker_id' => $user->jobseeker->id,
+            'job_category_id' => 0,
+            'name' => $request->get('name'),
+            'status' => 1,
+        ]);
+    }
+
+    public function job_interest_remove($user_id, Request $request)
+    {
+        $user = User::findOrFail($user_id);
+        $job_interest = Job_Interest::where('jobseeker_id', '=', $user->jobseeker->id)
+            ->where('name', '=', $request->get('name'));
+        $job_interest->delete();
+    }
 }
