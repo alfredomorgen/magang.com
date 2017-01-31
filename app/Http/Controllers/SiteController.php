@@ -71,7 +71,7 @@ class SiteController extends Controller
                 ->select('*', 'jobs.id as job_id', 'jobs.name as job_name','jobs.location as job_location');
         }elseif($company == null){
             $query = Job::where('name', 'LIKE', '%' . $search . '%')
-                ->select('*','jobs.name as job_name','jobs.location as job_location')
+                ->select('*','jobs.name as job_name','jobs.location as job_location','jobs.id as job_id')
                 ->where('status',Constant::status_active);
         }
 
@@ -82,7 +82,7 @@ class SiteController extends Controller
             $query->where('salary',$salary);
         }
         if($location != null){
-            $query->where('location', 'LIKE', '%' . $location . '%');
+            $query->where('jobs.location', 'LIKE', '%' . $location . '%');
         }
 
         $jobs = $query->orderBy('jobs.id')->paginate(5);
