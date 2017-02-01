@@ -6,6 +6,7 @@ use App\Bookmark;
 use App\Company;
 use App\Constant;
 use App\Http\Requests\JobseekerRequest;
+use App\Http\Requests\ResumeRequest;
 use App\Job;
 use App\Job_Interest;
 use App\Message;
@@ -137,6 +138,19 @@ class JobseekerController extends Controller
 
         $data = ['message' => $message];
         return redirect()->route('job.index', $job_id)->with($data);
+    }
+    public function upload_resume($user_id, ResumeRequest $request)
+    {
+        $user = User::find($user_id);
+        if($request->hasFile('resume')){
+            $resume = $request->file('resume');
+            $resume_name = md5(uniqid()).'.'.$resume->getClientOriginalExtension();
+            $resume->move(public_path().'/uploads/', $resume_name);
+            $user->jobseeker->resume = $resume_name;
+
+            $user->jobseeker->save();
+        }
+        return redirect()->route('jobseeker.apply', $request->get('job_id'));
     }
 
     public function applied_jobs()

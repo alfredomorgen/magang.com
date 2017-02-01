@@ -205,6 +205,10 @@ Route::get('/job/{id}/apply', [
     'uses' => 'JobseekerController@apply',
     'as' => 'jobseeker.apply'
 ]);
+Route::post('jobseeker/{user_id}/upload_resume/',[
+   'uses' => 'JobseekerController@upload_resume',
+    'as' => 'jobseeker.upload_resume'
+]);
 
 Route::post('/job/{id}/report', [
     'uses' => 'JobseekerController@report_job',
