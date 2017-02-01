@@ -35,34 +35,38 @@
             </div>
         </form>
     </div>
-    <div id="modal2" class="modal">
-        <form method="POST" action="{{ route('jobseeker.upload_resume', Auth::user()->id) }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="modal-content">
-                <p>Please upload your Resume</p>
-                <div class="input-field col s12">
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Resume</span>
-                            <input id="resume" type="file" name="resume" multiple>
+
+    @if(Auth::guest())
+    @elseif(Auth::User())
+        <div id="modal2" class="modal">
+            <form method="POST" action="{{ route('jobseeker.upload_resume', Auth::user()->id) }}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-content">
+                    <p>Please upload your Resume</p>
+                    <div class="input-field col s12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload Resume</span>
+                                <input id="resume" type="file" name="resume" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" name="resume">
+                            </div>
                         </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" name="resume">
-                        </div>
+                        @if ($errors->has('resume'))
+                            <strong>{{ $errors->first('resume') }}</strong>
+                        @endif
                     </div>
-                    @if ($errors->has('resume'))
-                        <strong>{{ $errors->first('resume') }}</strong>
-                    @endif
                 </div>
-            </div>
 
-            <input type="hidden" name="job_id" value="{{ $job->id }}">
+                <input type="hidden" name="job_id" value="{{ $job->id }}">
 
-            <div class="modal-footer">
-                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
-            </div>
-        </form>
-    </div>
+                <div class="modal-footer">
+                    <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+                </div>
+            </form>
+        </div>
+    @endif
 
     <div class="container">
         <div class="row">
@@ -153,11 +157,12 @@
                                 @endif
                             </div>
                             <div class="col s6 right-align">
-                                @if(Auth::user()->jobseeker->resume==null)
+                                @if(Auth::guest())
+                                @elseif(Auth::user()->jobseeker->resume == null)
                                     <a href="#modal2" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
                                 @else
                                     <a href="{{ route('jobseeker.apply', $job->id) }}" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
-                                    @endif
+                                @endif
                             </div>
                         </div>
                     </div>
