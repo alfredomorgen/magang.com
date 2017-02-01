@@ -74,9 +74,9 @@
                                                     <div class="card-content">
                                                         <span class="card-title activator orange-text text-darken-4">{{$job->name}}<i class="material-icons right">more_vert</i></span><br>
                                                         <span><i class="material-icons tiny">location_on</i> {{$job->location}}</span><br>
-                                                        <span><i class="material-icons tiny">av_timer</i>@if($job->type ==\App\Constant::job_fulltime) Full Time @else Part Time @endif</span><br>
-                                                        <span><i class="material-icons tiny">schedule</i> {{$job->period}} Months</span><br>
-                                                        <span><i class="material-icons tiny">payment</i>@if($job->salary ==\App\Constant::job_paid) Paid @else Not Paid @endif</span><br>
+                                                        <span><i class="material-icons tiny">av_timer</i>@if(Auth::Guest())<span class="grey-text"> Login to view </span> @else @if($job->type ==\App\Constant::job_fulltime) Full Time @else Part Time @endif @endif</span><br>
+                                                        <span><i class="material-icons tiny">schedule</i>@if(Auth::Guest())<span class="grey-text"> Login to view </span> @else  {{$job->period}} Months</span> @endif<br>
+                                                        <span><i class="material-icons tiny">payment</i>@if(Auth::Guest())<span class="grey-text"> Login to view </span> @else @if($job->salary ==\App\Constant::job_paid) Paid @else Not Paid @endif @endif</span><br>
                                                         <a class="btn orange white-text" href="{{route('job.index',$job->id)}}">View</a>
                                                         <span class="right">Posted : {{$job->created_at}}</span>
                                                     </div>

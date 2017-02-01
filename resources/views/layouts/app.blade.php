@@ -41,7 +41,7 @@
 
         @keyframes animatebottom {
             from {
-                bottom: -100px;
+                bottom: 0;
                 opacity: 0
             } to {
                 bottom: 0;
