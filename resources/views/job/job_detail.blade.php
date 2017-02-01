@@ -38,6 +38,20 @@
 
     @if(Auth::guest())
     @elseif(Auth::User())
+
+        <div  id="loading" class="center modal z-depth-0 valign-wrapper" style="width:50%;height:50%; background:transparent;padding-top: 200px;">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-yellow-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="modal2" class="modal">
             <form method="POST" action="{{ route('jobseeker.upload_resume', Auth::user()->id) }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -62,7 +76,7 @@
                 <input type="hidden" name="job_id" value="{{ $job->id }}">
 
                 <div class="modal-footer">
-                    <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+                    <button type="submit"  class="modal-action modal-close waves-effect waves-green btn-flat apply_submit">Save</button>
                 </div>
             </form>
         </div>
@@ -100,6 +114,7 @@
                             <h6 class="blue-text"><b>Job Description</b></h6>
                             <p>{!! nl2br ($job->description) !!}</p>
                         </div>
+
                         <div class="card-action">
                             <h6 class="blue-text"><b>Requirement</b></h6>
                             <p>{!! nl2br($job->requirement) !!}</p>
@@ -161,9 +176,11 @@
                                 @elseif(Auth::user()->jobseeker->resume == null)
                                     <a href="#modal2" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
                                 @else
-                                    <a href="{{ route('jobseeker.apply', $job->id) }}" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
+                                    <a href="{{ route('jobseeker.apply', $job->id) }}" class="btn btn-default orange waves-effect apply_submit" id="btnApply">Apply</a>
                                 @endif
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -197,8 +214,16 @@
                 Materialize.toast('Resume format must be .pdf', 3000, 'rounded');
             @endif
 
+
             $('.modal').modal();
             Materialize.toast('{{ session('message') }}', 3000, 'rounded');
+
+            $('.apply_submit').click(function (event){
+                $('#loading').modal({
+                    dismissible: false,
+                });
+                $('#loading').modal('open');
+            });
         });
     </script>
 @endsection
