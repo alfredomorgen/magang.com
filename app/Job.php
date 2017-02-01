@@ -16,6 +16,7 @@ class Job extends Model
         'location',
         'type',
         'salary',
+        'period',
         'benefit',
         'requirement',
         'description',

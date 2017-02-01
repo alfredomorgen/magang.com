@@ -29,6 +29,7 @@ class JobRequest extends FormRequest
             'location' => 'required',
             'type' => 'required',
             'salary' => 'required|in:0,1',
+            'period' => 'required',
             'benefit' => '',
             'requirement' => 'required',
             'description' => 'required',

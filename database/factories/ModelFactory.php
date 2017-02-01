@@ -81,6 +81,7 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) use ($factory
         'location' => $faker->address,
         'type' => $faker->biasedNumberBetween(0, 1),
         'salary' => $faker->biasedNumberBetween(0, 1),
+        'period' => $faker->biasedNumberBetween(1, 24),
         'benefit' => $faker->sentence,
         'requirement' => $faker->bs,
         'description' => $faker->catchPhrase,

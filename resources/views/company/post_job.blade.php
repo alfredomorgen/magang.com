@@ -47,6 +47,20 @@
                 </div>
 
                 <div class="row">
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="number" class="validate" id="period" name="period" min="1" max="60">
+                        <label for="period">Period</label>
+                        @if ($errors->has('period'))
+                            <strong>{{ $errors->first('period') }}</strong>
+                        @endif
+                    </div>
+                    <div class="input-field col s2">
+                        <label for="location" class="black-text">Month(s)</label>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">alarm</i>
                         <select name="type" id="type">

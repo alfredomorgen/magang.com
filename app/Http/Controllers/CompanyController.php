@@ -112,6 +112,7 @@ class CompanyController extends Controller
             'location' => $request->get('location'),
             'type' => $request->get('type'),
             'salary' => $request->get('salary'),
+            'period' => $request->get('period'),
             'benefit' => $request->get('type'),
             'requirement' => $request->get('requirement'),
             'description' => $request->get('description'),
@@ -156,6 +157,7 @@ class CompanyController extends Controller
         $job->location = $request->get('location');
         $job->type = $request->get('type');
         $job->salary = $request->get('salary');
+        $job->period = $request->get('period');
 
         $job->benefit = $request->get('benefit');
         $job->requirement = $request->get('requirement');
