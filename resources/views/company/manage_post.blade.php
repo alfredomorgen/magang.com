@@ -7,6 +7,20 @@
         }
     </style>
 
+    <div  id="loading" class="center modal z-depth-0 valign-wrapper" style="width:50%;height:50%; background:transparent;padding-top: 200px;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-yellow-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{--modals--}}
     @foreach($jobs as $job)
         <div id="modalCandidates{{ $job->id }}" class="modal" style="width:100%">
@@ -44,7 +58,7 @@
                                             @endif
                                         </td>
                                         @if($transaction->status == \App\Constant::status_inactive)
-                                            <td><a class="btn btn-block green" href="{{ route('company.transaction_approve', $transaction->id) }}">Approve</a></td>
+                                            <td><a class="btn btn-block green apply_submit" href="{{ route('company.transaction_approve', $transaction->id) }}">Approve</a></td>
                                         @elseif($transaction->status == \App\Constant::status_active)
                                             <td><a class="btn btn-block green" href="{{ route('company.transaction_approve', $transaction->id) }}" disabled>Approved</a></td>
                                         @endif
@@ -164,6 +178,13 @@
     <script>
         $(document).ready(function () {
             $('.modal').modal();
+
+            $('.apply_submit').click(function (event){
+                $('#loading').modal({
+                    dismissible: false,
+                });
+                $('#loading').modal('open');
+            });
         });
     </script>
 @endsection
