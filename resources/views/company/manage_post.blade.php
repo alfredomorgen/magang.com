@@ -180,10 +180,20 @@
             $('.modal').modal();
 
             $('.apply_submit').click(function (event){
+                event.preventDefault();
+                $(this).attr("disabled", true);
+
                 $('#loading').modal({
                     dismissible: false,
                 });
                 $('#loading').modal('open');
+
+                $.ajax({
+                    method: "get",
+                    url: $(this).attr("href"),
+                }).done(function () {
+                    $('#loading').modal('close');
+                });
             });
         });
     </script>
