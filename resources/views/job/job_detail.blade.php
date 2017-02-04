@@ -173,6 +173,7 @@
                             </div>
                             <div class="col s6 right-align">
                                 @if(Auth::guest())
+                                @elseif(Auth::user()->role == \App\Constant::user_company)
                                 @elseif(Auth::user()->jobseeker->resume == null)
                                     <a href="#modal2" class="btn btn-default orange waves-effect" id="btnApply">Apply</a>
                                 @else
