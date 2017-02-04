@@ -317,7 +317,7 @@
                                             <table class="soapbox" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td class="soapbox-title">
-                                                        Someone Apply to Your Job
+                                                        Someone Applied to Your Job
                                                     </td>
                                                 </tr>
                                             </table>
@@ -327,13 +327,6 @@
                                                 <tr>
                                                     <td>
                                                         <center>
-                                                            <table class="status" bgcolor="#fffeea" cellspacing="0">
-                                                                <tr>
-                                                                    <td class="status-cell">
-                                                                        Job's Name: <b>U18a Evolette</b>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
                                                         </center>
                                                     </td>
                                                 </tr>
@@ -345,38 +338,11 @@
                                                     <td class="body-padded">
                                                         <table class="body-text">
                                                             <tr>
-                                                                <td style="vertical-align:middle; padding-bottom:10px; padding-right:20px">
-                                                                    <table cellspacing="0" cellpadding="0" width="100%">
-                                                                        <tr>
-                                                                            <td>
-                                                                                <table cellpadding="0" cellspacing="0">
-                                                                                    <tr>
-                                                                                        <td width="80" height="80"
-                                                                                            style="text-align:left;border: 1px solid #888888;">
-                                                                                            <a href=""><img
-                                                                                                        style="display:block"
-                                                                                                        width="80"
-                                                                                                        height="80"
-                                                                                                        src="https://www.filepicker.io/api/file/OqRXT4JuRbmXSgbxccgK"></a>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </table>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td style="font-size:12px; padding-top:5px; text-align:left;">
-                                                                                User: <a style="color:blue;" href="">Jon
-                                                                                    Doe</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </td>
-                                                                <td class="body-text-cell" width="300"
-                                                                    style="padding-bottom:4px;">
-                                                                    <b>Hi (Company's Name),</b><br>
+                                                                <td class="body-text-cell" style="padding-bottom:4px;">
+                                                                    <b>Hi, </b><br>
                                                                     <br>
-                                                                    Looks like someone has submit his/her application to
-                                                                    purpose your Job(s)!<br>
+                                                                    Looks like someone has submitted his/her application to
+                                                                    apply your Job(s)!<br>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -384,7 +350,7 @@
                                                                width="100%">
                                                             <tr>
                                                                 <td class="body-text-cell"
-                                                                    style="text-align:left; padding-bottom:30px;">
+                                                                    style="text-align:left; padding-bottom:30px;"><br> <br>
                                                                     Please take a look in our website for details,
                                                                     <br><b>Login-> Manage Post-> View Candidates</b>
                                                                     Menu.

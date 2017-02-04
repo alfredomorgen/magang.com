@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => $faker->unique()->freeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
@@ -28,7 +28,7 @@ $factory->defineAs(App\User::class, 'jobseeker', function (Faker\Generator $fake
 
     return [
         'name' => $faker->name,
-        'email' => $faker->safeEmail,
+        'email' => $faker->freeEmail,
         'password' => $password ?: $password = bcrypt('qwerty'),
         'role' => \App\Constant::user_jobseeker,
         'phone' => $faker->phoneNumber,
@@ -55,7 +55,7 @@ $factory->defineAs(App\User::class, 'company', function (Faker\Generator $faker)
 
     return [
         'name' => $faker->company,
-        'email' => $faker->safeEmail,
+        'email' => $faker->freeEmail,
         'password' => $password ?: $password = bcrypt('qwerty'),
         'role' => \App\Constant::user_company,
         'phone' => $faker->phoneNumber,
